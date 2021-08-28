@@ -1,0 +1,149 @@
+{% extends "material-admin/base.html" %}
+{% load custom_tags %}
+{% load static %}
+
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block breadcrumb %}
+<!-- here you go -->
+{% endblock %}
+
+{% block content %}
+
+<div class="col s12 m12 l12">
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="msg {{ message.tags }}"{% endif %}> {{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+<div class="row">
+<div class="col s12 m12 l12">
+  <div class="card card card-default scrollspy">
+    <div class="card-content">
+      <h5> Tambah Riwayat Studi <b> {{pengguna.nama_lengkap}} </b></h5> 
+      <hr/>
+      <form action="{% url 'survey:riwayat_studi_create_or_update' %}" method="POST" class="form">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col l6 s12">
+            <label> Nama Instansi </label>
+            <input name="nama_instansi" type="text" class="input-field" required value="{{instance.nama_instansi}}">
+          </div>
+          <div class="col l6 s12">
+            <label> Nomor Induk Studi </label>
+            <input name="nomor_induk_studi" type="text" class="input-field" required required value="{{instance.nomor_induk_studi}}">
+          </div>
+          <div class="col l6 s12">
+            <label> Negara </label>
+            <input name="negara" type="text" class="input-field" required value="{{instance.negara}}">
+          </div>
+          <div class="col l6 s12">
+            <label> Provinsi </label>
+            
+          </div>
+          <div class="col l6 s12">
+            <label> Kabupaten </label>
+            <select name="kabupaten">
+              {% for data in kabupatens %}
+                <option {% if instance.kabupaten == data %}  selected {% endif %} value="{{data.id}}"> {{data}} </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col l6 s12">
+            <label> Jenjang Pendidikan </label>
+            <select name="jenjang_pendidikan">
+              {% for data in jenjang_pendidikans %}
+                <option {% if instance.jenjang_pendidikan == data %}  selected {% endif %} value="{{data.id}}"> {{data}} </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col l6 s12">
+            <label> Fakultas </label>
+            <input name="fakultas" type="text" class="input-field" value="{{instance.fakultas}}" >
+          </div>
+
+          <div class="col l6 s12">
+            <label> Jurusan </label>
+            <input name="jurusan" type="text" class="input-field" value="{{instance.jurusan}}">
+          </div>
+          
+          
+          <div class="col l6 s12">
+            <label> Jalur Masuk </label>
+            <input name="jalur_masuk" type="text" class="input-field" value="{{instance.jalur_masuk}}">
+          </div>
+          
+          <div class="col l6 s12">
+            <label> Tahun Masuk </label>
+            <input name="tahun_masuk" type="date" required class="input-field" value="{{instance.tahun_masuk}}">
+          </div>
+
+          <div class="col l6 s12">
+            <label> Tahun Keluar </label>
+            <input name="tahun_keluar" type="date"  class="input-field" value="{{instance.tahun_keluar}}">
+          </div>
+
+          <div class="col l6 s12">
+            <label> Alasan Keluar </label>
+            <input name="alasan_keluar" type="text" class="input-field" value="{{instance.alasan_keluar}}">
+          </div>
+
+          <div class="col l6 s12">
+            <label> Beasiswa </label>
+            <input name="is_beasiswa" type="text" class="input-field" value="{{instance.is_beasiswa}}">
+          </div>
+          
+          <input type="hidden" name="crud_type" value="{{ create_or_update }}">
+
+          <div class="input-field col s12">
+            <button class="btn waves-effect waves-light submit" type="submit" name="action">
+              Submit <i class="material-icons right">send</i>
+            </button>
+
+            <a href="/mm/biller" class="btn red " type="button" name="action">
+              Cancel <i class="material-icons right">cancel</i>
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  <select class="js-data-example-ajax">
+  </select>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+  
+  //var baseUrl = 'https://ibnux.github.io/data-indonesia/';
+  //var urlGetAllProvinsi= baseUrl + 'propinsi.json';
+  //var urlGetKotaByProvinsi= baseUrl + '/kabupaten/'+id_provinsi+'.json';
+
+  
+  $('.js-data-example-ajax').select2({
+    url  : "/media/localdb/provinsi.json",
+    //placeholder: 'Pilih Provinsi',
+    //selectOnClose: false,
+    //tags: false,
+    //tokenSeparators: [',', ' '],
+    /*
+    ajax: {
+      dataType : "json",
+      url  : "/media/localdb/provinsi.json",
+      data : "results"
+    }
+    */
+  });
+</script>
+{% endblock js%}
+

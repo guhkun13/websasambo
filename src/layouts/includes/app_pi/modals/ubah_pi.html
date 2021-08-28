@@ -1,0 +1,33 @@
+<!-- Modal Ubah Pi -->
+<div class="modal fade" id="modal_ubah_pi_{{pi.kode_pi}}" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form role="form" method="POST" action="{% url 'pi:update' %}" enctype="multipart/form-data">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel"> Ubah Raspberry Pi </h4>
+				</div>
+				<div class="modal-body">    
+					<div class="box-body">
+						{% csrf_token %}
+						<div class="form-group label-floating">
+							<label class="control-label"> Kode Pi </label>
+							<input type="text" class="form-control" name="kode_pi" value="{{ pi.kode_pi }}" readonly>
+						</div>						
+						<div class="form-group label-floating">
+							<label class="control-label"> IP Address </label>
+							<input type="text" name="ip_address" class="form-control" required="required" value="{{pi.ip_address}}" readonly>
+						</div>
+						<div class="form-group label-floating">
+							<label class="control-label"> Lokasi </label>
+							<input type="text" name="lokasi" class="form-control" required="required" value="{{pi.lokasi}}">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-rose"> Simpan </button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

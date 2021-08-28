@@ -1,0 +1,39 @@
+<div class="logo">
+  <a href="/" class="simple-text">
+    Bianglala
+  </a>
+</div>
+<div class="sidebar-wrapper">
+  <ul class="nav">
+    <li {% if app == "mainapp" %} class="active" {% endif %}>
+      <a href="{% url 'mainapp:dashboard' %}" >
+        <i class="material-icons">dashboard</i>
+        <p>Dashboard</p>
+      </a>
+    </li>
+    <li {% if app == "prodi" %} class="active" {% endif %}>
+      <a href="{% url 'mainapp:prodi' %}" >
+        <i class="material-icons">account_balance</i>
+        <p>Prodi</p>
+      </a>
+    </li>
+    <li {% if app == "bianglala" %} class="active" {% endif %}>
+      <a href="{% url 'mainapp:bianglala' %}" >
+        <i class="material-icons">book</i>
+        <p> Bianglala </p>
+      </a>
+    </li>
+    <li {% if app == "aipt" %} class="active" {% endif %}>
+      <a href="{% url 'mainapp:aipt' %}" >
+        <i class="material-icons">description</i>
+        <p> AIPT </p>
+      </a>
+    </li>
+    <!-- <li class="active-pro">
+      <a href="{% url 'mainapp:logout' %}" class="btn btn-danger" onclick="return confirm('Yakin logout?')">
+        <i class="material-icons">exit_to_app</i>
+        <p>Logout</p>
+      </a>
+    </li> -->
+  </ul>
+</div>

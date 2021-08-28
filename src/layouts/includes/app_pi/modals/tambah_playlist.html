@@ -1,0 +1,25 @@
+<div class="modal fade" id="modal_tambah_playlist" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form role="form" method="POST" action="{% url 'pi:playlist_store' %}" enctype="multipart/form-data">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel"> Tambah Playlist </h4>
+				</div>
+				<div class="modal-body">    
+					<div class="box-body">
+						{% csrf_token %}
+						<div class="form-group label-floating is-empty">
+							<input type="file" name="berkas_video" class="form-control" required="required" style="opacity: 1; position: inherit;">
+						</div>					
+						<input type="hidden" name="kode_pi" value="{{pi.kode_pi}}">	
+						<input type="hidden" name="sisa_durasi" value="{{sisa_durasi}}">	
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-rose"> Submit </button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<meta name="author" content="Guhkun">
+	<title>User Login </title>
+	<link rel="apple-touch-icon" href="{% static 'materialize-html-admin-template/app-assets/images/favicon/apple-touch-icon-152x152.png">
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'materialize-html-admin-template/app-assets/images/favicon/favicon-32x32.png">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- BEGIN: VENDOR CSS-->
+	<link rel="stylesheet" type="text/css" href="{% static 'materialize-html-admin-template/app-assets/vendors/vendors.min.css' %} ">
+	<!-- END: VENDOR CSS-->
+	<!-- BEGIN: Page Level CSS-->
+	<link rel="stylesheet" type="text/css" href="{% static 'materialize-html-admin-template/app-assets/css/themes/horizontal-menu-template/materialize.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'materialize-html-admin-template/app-assets/css/themes/horizontal-menu-template/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'materialize-html-admin-template/app-assets/css/layouts/style-horizontal.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'materialize-html-admin-template/app-assets/css/pages/login.css' %}">
+	<!-- END: Page Level CSS-->
+	<!-- BEGIN: Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="{% static 'materialize-html-admin-template/app-assets/css/custom/custom.css' %}">
+	<!-- END: Custom CSS-->
+	<style media="screen">
+	.login-info{
+		text-align: center;
+		color: red;
+		border-radius: 10px;
+		background-color: white;
+		padding: 10px;
+	}
+
+	</style>
+</head>
+<!-- END: Head-->
+
+<body class="horizontal-layout page-header-light horizontal-menu preload-transitions 1-column login-bg   blank-page blank-page" data-open="click" data-menu="horizontal-menu" data-col="1-column">
+	<div class="row">
+		<div class="col s12">
+			<div class="container">
+				<div id="login-page" class="row">
+					<div class="col s12 m6 l4 z-depth-4 card-panel border-radius-6 login-card bg-opacity-8">
+						<form class="login-form" method="POST" action="{% url 'mainapp:login' %}">
+							{% csrf_token %}
+							<div class="row">
+								<div class="input-field col s12">
+									<h5 class="ml-4">Sign in</h5>
+								</div>
+							</div>
+							<div class="row margin">
+								<div class="input-field col s12">
+									<i class="material-icons prefix pt-2">person_outline</i>
+									<input id="username" name="username" type="text">
+									<label for="username" class="center-align">Username</label>
+								</div>
+							</div>
+							<div class="row margin">
+								<div class="input-field col s12">
+									<i class="material-icons prefix pt-2">lock_outline</i>
+									<input id="password" name="password" type="password">
+									<label for="password">Password</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<button type="submit" class="btn waves-effect waves-light border-round gradient-45deg-purple-deep-orange col s12"> Login </button>
+								</div>
+							</div>
+							<div class="row">
+								{% if msg_false %}
+								<div class="login-info">
+									<h4> {{ msg_false }} </h4>
+								</div>
+								{% endif %}
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="content-overlay"></div>
+		</div>
+	</div>
+
+	<!-- BEGIN VENDOR JS-->
+	<script src="{% static 'materialize-html-admin-template/app-assets/js/vendors.min.js' %}"></script>
+	<!-- BEGIN VENDOR JS-->
+	<!-- BEGIN PAGE VENDOR JS-->
+	<!-- END PAGE VENDOR JS-->
+	<!-- BEGIN THEME  JS-->
+	<script src="{% static 'materialize-html-admin-template/app-assets/js/plugins.js' %}"></script>
+	<script src="{% static 'materialize-html-admin-template/app-assets/js/search.js' %}"></script>
+	<script src="{% static 'materialize-html-admin-template/app-assets/js/custom/custom-script.js' %}"></script>
+	<!-- END THEME  JS-->
+	<!-- BEGIN PAGE LEVEL JS-->
+	<!-- END PAGE LEVEL JS-->
+</body>
+
+<!-- Default Statcounter code for BIANGLALA
+https://bianglala.banpt.or.id -->
+<script type="text/javascript">
+var sc_project=12333702;
+var sc_invisible=1;
+var sc_security="87f50639";
+var sc_https=1;
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics"
+href="https://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="https://c.statcounter.com/12333702/0/87f50639/1/"
+alt="Web Analytics"></a></div></noscript>
+<!-- End of Statcounter Code -->
+
+</html>

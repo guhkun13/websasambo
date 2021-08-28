@@ -1,0 +1,29 @@
+<div class="modal fade" id="modal_tambah_akses_pi" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form role="form" method="POST" action="{% url 'mainapp:akses_store' %}" enctype="multipart/form-data">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel"> Tambah Akses </h4>
+				</div>
+				<div class="modal-body">    
+					<div class="box-body">
+						{% csrf_token %}
+						<div class="form-group label-floating">
+							<label class="control-label"> Kode Pi </label>
+							<select class="form-control" name="kode_pi">
+								{% for pi in pis %}
+									<option value="{{pi.kode_pi}}"> {{pi.kode_pi}} </option>
+								{% endfor %}
+							</select>
+						</div>
+						<input type="hidden" name="user_id" value="{{ user.id }}">												
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-rose"> Simpan </button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
