@@ -1,0 +1,101 @@
+{% extends "material-admin/base.html" %}
+{% load custom_tags %}
+{% load static %}
+
+{% block css %}
+{% endblock %}
+
+{% block breadcrumb %}
+<!-- here you go -->
+{% endblock %}
+
+{% block content %}
+
+<div class="col s12 m12 l12">
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="msg {{ message.tags }}" {% endif %}> {{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+<div class="row">
+  <div class="col s12 m12 l12">
+    <div class="card card card-default scrollspy">
+      <div class="card-content">
+        <h5> Edit Pengguna [<b> {{request.user.username}}] </b> </h5>
+        <hr />
+        <form action="{% url 'pengguna:save' %}" method="POST" class="form">
+          {% csrf_token %}
+
+          <div class="row">
+            <div class="col l6 s12">
+              <label> Nama Lengkap </label>
+              <input name="nama_lengkap" type="text" class="input-field" required value="{{obj.nama_lengkap}}">
+            </div>
+            <div class="col l6 s12">
+              <label> Nama Panggilan </label>
+              <input name="nama_panggilan" type="text" class="input-field" required value="{{obj.nama_lengkap}}">
+            </div>
+            <div class="col l6 s12">
+              <label> Jenis Kelamin </label>
+              <select name="jenis_kelamin">
+                <option value="L"> LAKI-LAKI </option>
+                <option value="P"> PEREMPUAN </option>
+              </select>
+            </div>
+
+            <div class="col l6 s12">
+              <label> Tempat Lahir </label>
+              <input name="tempat_lahir" type="text" class="input-field" value="{{instance.fakultas}}">
+            </div>
+
+            <div class="col l6 s12">
+              <label> Tanggal Lahir </label>
+              <input name="tanggal_lahir" type="date" class="input-field" required value="{{obj.tanggal_lahir}}">
+            </div>
+
+            <div class="col l6 s12">
+              <label> Ijazah Tertinggi </label>
+              <select name="ijazah_tertinggi">
+                {% for data in jenjang_pendidikans %}
+                <option {% if instance.jenjang_pendidikan == data %} selected {% endif %} value="{{data.id}}"> {{data}}
+                </option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="col l6 s12">
+              <label> Nomor HP </label>
+              <input name="nomor_hp" type="text" class="input-field" value="{{obj.nomor_hp}}">
+            </div>
+
+            <div class="col l6 s12">
+              <label> Email </label>
+              <input name="email" type="email" class="input-field" value="{{obj.email}}">
+            </div>
+
+            <input type="hidden" name="pk" value="{{obj.id}}">
+
+            <div class="input-field col s12">
+              <button class="btn waves-effect waves-light submit" type="submit" name="action">
+                Submit <i class="material-icons right">send</i>
+              </button>
+
+              <a href="{% url 'mainapp:index' %}" class="btn red " type="button" name="action">
+                Cancel <i class="material-icons right">cancel</i>
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock js%}
