@@ -28,7 +28,69 @@
       <div class="card-content">
         <h5> Tambah Pengguna [<b> {{request.user.username}}] </b> </h5>
         <hr />
-        {{ form }}
+        <form action="{% url 'pengguna:save' %}" method="POST" class="form">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col l6 s12">
+              <label> Nama Lengkap </label>
+              <input name="nama_lengkap" type="text" class="input-field" required value="{{instance.nama_instansi}}">
+            </div>
+            <div class="col l6 s12">
+              <label> Nomor Panggilan </label>
+              <input name="nama_panggilan" type="text" class="input-field" required
+                value="{{instance.nomor_induk_studi}}">
+            </div>
+            <div class="col l6 s12">
+              <label> Jenis Kelamin </label>
+              <select name="jenis_kelamin">
+                <option value="L"> LAKI-LAKI </option>
+                <option value="P"> PEREMPUAN </option>
+              </select>
+            </div>
+
+            <div class="col l6 s12">
+              <label> Tempat Lahir </label>
+              <input name="tempat_lahir" type="text" class="input-field" value="{{instance.fakultas}}">
+            </div>
+
+            <div class="col l6 s12">
+              <label> Tanggal Lahir </label>
+              <input name="tanggal_lahir" type="date" class="input-field" required value="{{instance.tanggal_lahir}}">
+            </div>
+
+            <div class="col l6 s12">
+              <label> Ijazah Tertinggi </label>
+              <select name="ijazah_tertinggi">
+                {% for data in jenjang_pendidikans %}
+                <option {% if instance.jenjang_pendidikan == data %} selected {% endif %} value="{{data.id}}"> {{data}}
+                </option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="col l6 s12">
+              <label> Nomor HP </label>
+              <input name="nomor_hp" type="text" class="input-field" value="{{instance.is_beasiswa}}">
+            </div>
+
+            <div class="col l6 s12">
+              <label> Email </label>
+              <input name="email" type="email" class="input-field" value="{{instance.is_beasiswa}}">
+            </div>
+
+            <input type="hidden" name="username" value="{{request.user.username}}">
+
+            <div class="input-field col s12">
+              <button class="btn waves-effect waves-light submit" type="submit" name="action">
+                Submit <i class="material-icons right">send</i>
+              </button>
+
+              <a href="{% url 'mainapp:index' %}" class="btn red " type="button" name="action">
+                Cancel <i class="material-icons right">cancel</i>
+              </a>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>

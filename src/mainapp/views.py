@@ -18,6 +18,8 @@ from django.views.generic import DetailView, View
 # from mainapp.ajax_class.utils import *
 from django.core.serializers.json import DjangoJSONEncoder
 
+from pengguna.models import Pengguna
+from riwayatstudi.models import RiwayatStudi
 
 def index(request):
     if not request.user.is_authenticated:
@@ -108,6 +110,19 @@ def dashboard(request):
     ]
 
     context['keys_rwstudi'] = keys_rwstudi
+
+    keys_profile = [
+        'nomor_induk_anggota',
+        'nama_lengkap',
+        'nama_panggilan',
+        'jenis_kelamin',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'nomor_hp',
+        'email',        
+        'created_at',
+    ]
+    context['keys_profile'] = keys_profile
 
     print(obj_pengguna)
     print(profile_pengguna)

@@ -75,6 +75,7 @@ def get_all_object_properties(object):
 	    desc[f_name] = str(f_val)
 
 	return desc
+	
 
 def get_current_status(obj):
 	status = obj.status_verifikasi
@@ -166,3 +167,15 @@ def convert_datetime_to_string(datetime_object, format):
 def set_datetime_to_last_time(dt):
     result = dt.replace(hour=23, minute=59)
     return result
+
+
+def get_user_by_username(username):
+	print('@get_user_by_username: ' , username)
+	try:
+		user = User.objects.get(username=username)
+	except Exception as e:
+		user = None
+
+	print ("return user = ")
+	print(user)
+	return user

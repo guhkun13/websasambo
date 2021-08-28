@@ -4,22 +4,27 @@
 <ul class="collapsible">
     <li>
         <div class="collapsible-header cyan">
-        <i class="material-icons">add</i>  {{datas.nama_lengkap}}
+            <i class="material-icons">add</i> {{datas.nama_lengkap}}
         </div>
         <div class="collapsible-body">
             <div class="card card-primary primary">
-                <div class="card-content">        
-                    <table>            
+                <div class="card-content">
+                    <table>
                         {% for key in datas  %}
-                            <tr>    
-                                <td> {{ key|as_title }} </td> <td> : {% get_dict_value datas key %} </td>
-                            </tr>
+                        <tr>
+                            <td> {{ key|as_title }} </td>
+                            <td> : {% get_dict_value datas key %} </td>
+                        </tr>
                         {% endfor %}
+
                     </table>
+                    <br />
+                    <p>
+                        <a href="{% url 'pengguna:edit' %}" class="btn"> Edit </a>
+                    </p>
                 </div>
             </div>
         </div>
     </li>
 </ul>
 {% endfor %}
-

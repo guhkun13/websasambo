@@ -1,0 +1,48 @@
+{% extends "material-admin/base.html" %}
+{% load custom_tags %}
+{% load static %}
+
+{% block css %}
+{% endblock %}
+
+{% block breadcrumb %}
+<!-- here you go -->
+{% endblock %}
+
+{% block content %}
+
+<div class="col s12 m12 l12">
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="msg {{ message.tags }}" {% endif %}> {{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+<div class="row">
+  <div class="col s12 m12 l12">
+    <div class="card card card-default scrollspy">
+      <div class="card-content">
+        <table class="table">
+          <table>
+            {% for pengguna in penggunas %}
+            {% for key in pengguna %}
+            <tr>
+              <td> {{ key|as_title }} </td>
+              <td> : {% get_dict_value pengguna key %} </td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+          </table>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock js%}
