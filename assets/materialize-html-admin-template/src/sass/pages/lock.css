@@ -1,0 +1,26 @@
+/*----------------------------------------
+    Login Page
+------------------------------------------*/
+.forgot-bg {
+  background-image: url("../../images/gallery/flat-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#lock-screen {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+}
+
+#lock-screen .card-panel.border-radius-6.forgot-card {
+  margin-left: 0 !important;
+}
+/*# sourceMappingURL=lock.css.map */

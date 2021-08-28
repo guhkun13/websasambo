@@ -1,0 +1,15 @@
+{
+    "version": 3,
+    "mappings": "AAAA;;4CAE4C;AAI5C,AAAA,WAAW,CAAC,gBAAgB,CAAA;EAC3B,MAAM,EAAE,IAAI;CACZ;;AACD,AAAA,WAAW,CAAA;EACV,MAAM,EAAE,IAAI;CACZ;;AAED,AAAA,WAAW,CAAC,gBAAgB,AAAA,OAAO,CAAA;EAC/B,UAAU,EAAE,eAAe;EAC3B,YAAY,EAAE,EAAE;CACnB;;AAED,AAAA,WAAW,CAAC,gBAAgB,AAAA,OAAO,CAAC,IAAK,CAAA,eAAe,IAAI,OAAO,CAAA;EAClE,QAAQ,EAAE,mBAAmB;CAC7B;;AAED,AAAA,SAAS,CAAA;EACR,MAAM,EAAE,4BAA4B;CACpC;;AAED,AAAA,cAAc,AAAA,MAAM,CAAA;EACnB,UAAU,EAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,GAAG,CAAC,mBAAmB,EAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,GAAG,CAAC,mBAAmB,EAAE,CAAC,CAAC,GAAG,CAAC,GAAG,CAAE,IAAG,CAAC,kBAAkB;EAClH,kBAAkB,EAAC,QAAQ;EAC5B,eAAe,EAAC,QAAQ;EACxB,aAAa,EAAC,QAAQ;EACtB,UAAU,EAAC,QAAQ;CACrB",
+    "sources": [
+        "contacts.scss",
+        "variables.scss",
+        "../components/_color-variables.scss",
+        "../themes/vertical-modern-menu-template/_variables.scss",
+        "../components/_variables.scss",
+        "../theme-components/_theme-variables.scss",
+        "../themes/vertical-modern-menu-template/_theme-variables.scss"
+    ],
+    "names": [],
+    "file": "contacts.css"
+}

@@ -1,0 +1,15 @@
+{
+    "version": 3,
+    "mappings": "AAAA,4BAA4B;AAC5B,2BAA2B;AAE3B,AACE,iBADe,CACf,eAAe,CAAA;EACb,MAAM,EAAE,GAAG,CAAC,KAAK,CEyTL,OAAO;EFxTnB,aAAa,EAAE,GAAG;EAClB,OAAO,EAAE,IAAI;CACd",
+    "sources": [
+        "extra-components-treeview.scss",
+        "variables.scss",
+        "../components/_color-variables.scss",
+        "../themes/vertical-modern-menu-template/_variables.scss",
+        "../components/_variables.scss",
+        "../theme-components/_theme-variables.scss",
+        "../themes/vertical-modern-menu-template/_theme-variables.scss"
+    ],
+    "names": [],
+    "file": "extra-components-treeview.css"
+}

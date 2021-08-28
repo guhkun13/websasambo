@@ -1,0 +1,15 @@
+{
+    "version": 3,
+    "mappings": "AAAA;;4CAE4C;AAI5C,AAAA,UAAU,CAAA;EACT,gBAAgB,EAAE,uCAAuC;EACzD,iBAAiB,EAAE,SAAS;EAC5B,eAAe,EAAE,KAAK;CACtB;;AAED,AAAA,gBAAgB,CAAA;EACf,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,MAAM,EAAE,KAAK;CAKb;;AATD,AAMC,gBANe,CAMf,WAAW,AAAA,gBAAgB,AAAA,YAAY,CAAA;EACtC,WAAW,EAAE,YAAY;CACzB",
+    "sources": [
+        "forgot.scss",
+        "variables.scss",
+        "../components/_color-variables.scss",
+        "../themes/vertical-modern-menu-template/_variables.scss",
+        "../components/_variables.scss",
+        "../theme-components/_theme-variables.scss",
+        "../themes/vertical-modern-menu-template/_theme-variables.scss"
+    ],
+    "names": [],
+    "file": "forgot.css"
+}

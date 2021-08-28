@@ -1,0 +1,15 @@
+{
+    "version": 3,
+    "mappings": "AAAA;;4CAE4C;AAG5C,AACI,GADD,CACC,SAAS,CAAC;EACN,UAAU,EE6EF,OAAO;EF5Ef,KAAK,EKEL,IAAI;ELDJ,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,OAAO;CACnB;;AANL,AAQI,GARD,CAQC,UAAU,CAAC;EACP,UAAU,EE8BD,OAAO,CF9Ba,UAAU;EACvC,KAAK,EKLL,IAAI,CLKU,UAAU;EACxB,WAAW,EAAE,IAAI;EACjB,aAAa,EAAE,GAAG;EAClB,YAAY,EE0BH,OAAO,CF1Be,UAAU;EACzC,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,IAAI;CAChB;;AAhBL,AAkBI,GAlBD,CAkBC,kBAAkB,AAAA,IAAK,CAAA,SAAS,CAAC,iBAAiB,AAAA,MAAM;AAlB5D,GAAG,CAmBC,kBAAkB,AAAA,IAAK,CAAA,SAAS,CAAC,OAAO,AAAA,MAAM;AAnBlD,GAAG,CAoBC,kBAAkB,AAAA,MAAM,CAAC;EACrB,UAAU,EAAE,IAAI;CACnB;;AAtBL,AAyBQ,GAzBL,CAwBC,oBAAoB,CAChB,EAAE,CAAC;EACC,aAAa,EAAE,IAAI;CACtB;;AA3BT,AA8BI,GA9BD,CA8BC,EAAE,AAAA,OAAO,CAAC;EACN,YAAY,EAAE,cAAc;CAC/B;;AAGL,AAAA,WAAW,CAAC;EACR,OAAO,EAAE,IAAI;EACb,SAAS,EAAE,IAAI;CAClB;;AAED,MAAM,EAAE,SAAS,EAAE,KAAK;EAEpB,AAAA,QAAQ;EACR,UAAU,CAAC;IACP,aAAa,EAAE,KAAK;GACvB",
+    "sources": [
+        "app-calendar.scss",
+        "variables.scss",
+        "../components/_color-variables.scss",
+        "../themes/vertical-modern-menu-template/_variables.scss",
+        "../components/_variables.scss",
+        "../theme-components/_theme-variables.scss",
+        "../themes/vertical-modern-menu-template/_theme-variables.scss"
+    ],
+    "names": [],
+    "file": "app-calendar.css"
+}

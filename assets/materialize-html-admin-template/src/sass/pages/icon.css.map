@@ -1,0 +1,15 @@
+{
+    "version": 3,
+    "mappings": "AAAA;;4CAE4C;AAG5C,AAAA,UAAU,CAAC;EACV,WAAW,EAAE,IAAI;CACjB;;AACD,AACC,eADc,CACd,CAAC,CAAC;EACD,SAAS,EAAE,GAAG;EACd,OAAO,EAAE,KAAK;EACd,aAAa,EAAE,IAAI;CACnB;;AALF,AAMC,eANc,CAMd,aAAa,CAAC;EACb,MAAM,EAAE,KAAK;EACb,UAAU,EAAE,MAAM;CAClB;;AAEF,AAAA,YAAY,CAAC;EACZ,OAAO,EAAE,KAAK;EACd,UAAU,EAAE,MAAM;EAClB,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;EACb,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,UAAU;CAIlB;;AAVD,AAOC,YAPW,CAOX,CAAC,CAAC;EACD,MAAM,EAAE,CAAC;CACT",
+    "sources": [
+        "icon.scss",
+        "variables.scss",
+        "../components/_color-variables.scss",
+        "../themes/vertical-modern-menu-template/_variables.scss",
+        "../components/_variables.scss",
+        "../theme-components/_theme-variables.scss",
+        "../themes/vertical-modern-menu-template/_theme-variables.scss"
+    ],
+    "names": [],
+    "file": "icon.css"
+}

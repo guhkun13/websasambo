@@ -1,0 +1,15 @@
+{
+    "version": 3,
+    "mappings": "AAAA;;4CAE4C;AAG5C,AACI,aADS,CACT,6BAA6B,CAAA;EACzB,UAAU,EAAE,MAAM;EAClB,QAAQ,EAAE,QAAQ;CACrB;;AAJL,AAKI,aALS,CAKT,YAAY,CAAA;EACR,aAAa,EAAE,IAAI;CACtB;;AAPL,AAQI,aARS,CAQT,aAAa,CAAA;EACT,aAAa,EAAE,GAAG;CACrB;;AAVL,AAWI,aAXS,CAWT,sBAAsB,CAAA;EAClB,cAAc,EAAE,MAAM;CACzB;;AAbL,AAcI,aAdS,CAcT,sBAAsB,CAAA;EAClB,cAAc,EAAE,MAAM;CACzB;;AAhBL,AAiBI,aAjBS,CAiBT,0BAA0B,CAAA;EACtB,UAAU,EAAE,KAAK;CACpB;;AAnBL,AAoBI,aApBS,CAoBT,WAAW,CAAA;EACP,KAAK,EAAE,IAAI;EACX,SAAS,EAAE,IAAI;EACf,MAAM,EAAE,OAAO;CAClB;;AAxBL,AAyBI,aAzBS,CAyBT,eAAe,AAAA,sBAAsB,CAAA;EACjC,cAAc,EAAE,MAAM;CACzB;;AA3BL,AA4BI,aA5BS,CA4BT,cAAc,CAAA;EACV,MAAM,EAAE,OAAO;CAClB;;AA9BL,AAgCQ,aAhCK,CA+BT,cAAc,CACV,GAAG,AAAA,eAAe,CAAA;EACd,MAAM,EAAE,OAAO;CAClB;;AAlCT,AAsCY,aAtCC,CAoCT,KAAK,CACD,YAAY,CACR,eAAe,CAAA;EACX,MAAM,EAAE,OAAO;CAClB;;AAxCb,AA2CI,aA3CS,CA2CT,EAAE,CAAA;EACE,OAAO,EAAE,GAAG;CACf;;AAGL,MAAM,MAAM,MAAM,MAAM,gBAAgB,EAAE,MAAM;EAC5C,AAAA,aAAa,CAAA;IACT,UAAU,EAAE,IAAI;GACnB",
+    "sources": [
+        "user-profile-page.scss",
+        "variables.scss",
+        "../components/_color-variables.scss",
+        "../themes/vertical-modern-menu-template/_variables.scss",
+        "../components/_variables.scss",
+        "../theme-components/_theme-variables.scss",
+        "../themes/vertical-modern-menu-template/_theme-variables.scss"
+    ],
+    "names": [],
+    "file": "user-profile-page.css"
+}

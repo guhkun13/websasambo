@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA;;EAEE;AAIF,AACI,sBADkB,CAClB,KAAK,CAAC;EACF,QAAQ,EAAE,MAAM;CACnB;;AAHL,AAKI,sBALkB,CAKlB,aAAa,CAAC;EACV,eAAe,EAAE,aAAa;EAC9B,cAAc,EAAE,WAAW;CAC9B",
+    "sources": [
+        "charts-sparkline.scss"
+    ],
+    "names": [],
+    "file": "charts-sparkline.css"
+}

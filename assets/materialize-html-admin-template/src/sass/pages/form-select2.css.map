@@ -1,0 +1,15 @@
+{
+    "version": 3,
+    "mappings": "AAAA;;4CAE4C;AAI5C,AAGM,gBAHU,CACd,yBAAyB,CACvB,wBAAwB,CACtB,MAAM,AAAA,uBAAuB,CAAA;EAC3B,WAAW,EAAE,GAAG;EAChB,SAAS,EAAC,MAAM;CACjB;;AANP,AAOM,gBAPU,CACd,yBAAyB,CACvB,wBAAwB,CAKtB,0BAA0B,CAAA;EACxB,OAAO,EAAE,IAAI;CAOd;;AAfP,AASQ,gBATQ,CACd,yBAAyB,CACvB,wBAAwB,CAKtB,0BAA0B,CAExB,kCAAkC,CAAA;EAChC,YAAY,EAAE,IAAI;CAInB;;AAdT,AAWU,gBAXM,CACd,yBAAyB,CACvB,wBAAwB,CAKtB,0BAA0B,CAExB,kCAAkC,CAEhC,GAAG,CAAA;EACD,KAAK,EAAE,KAAK;CACb;;AAMX,AAAA,iBAAiB,CAAA;EACf,OAAO,EAAE,aAAa;CACvB;;AAED,AACE,yBADuB,CACvB,sBAAsB,CAAA;EACpB,OAAO,EAAE,iBAAiB;EAC1B,UAAU,EAAE,qBAAuB;CACpC",
+    "sources": [
+        "form-select2.scss",
+        "variables.scss",
+        "../components/_color-variables.scss",
+        "../themes/vertical-modern-menu-template/_variables.scss",
+        "../components/_variables.scss",
+        "../theme-components/_theme-variables.scss",
+        "../themes/vertical-modern-menu-template/_theme-variables.scss"
+    ],
+    "names": [],
+    "file": "form-select2.css"
+}

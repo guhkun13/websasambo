@@ -1,0 +1,15 @@
+{
+    "version": 3,
+    "mappings": "AAAA;;4CAE4C;AAE5C,6BAA6B;AAI7B,AAEE,QAFM,CACP,KAAK,CACJ,UAAU,CAAC;EACV,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,WAAW,EAAE,GAAG;EAChB,SAAS,EAAE,MAAM;EACjB,WAAW,EAAE,IAAI;EACjB,MAAM,EAAE,IAAI;EACZ,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,CAAC;EACN,cAAc,EAAE,CAAC;CACjB",
+    "sources": [
+        "product.scss",
+        "variables.scss",
+        "../components/_color-variables.scss",
+        "../themes/vertical-modern-menu-template/_variables.scss",
+        "../components/_variables.scss",
+        "../theme-components/_theme-variables.scss",
+        "../themes/vertical-modern-menu-template/_theme-variables.scss"
+    ],
+    "names": [],
+    "file": "product.css"
+}

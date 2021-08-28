@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAC,sBAAsB;AACtB,MAAM,CAAC,MAAM,OAAO,gBAAgB,EAAE,MAAM,KAAK,gBAAgB,EAAE,IAAI;EAEpE,AAAA,qBAAqB,CAAC,WAAW,CAAC;IAC/B,OAAO,EAAE,IAAI;GACf",
+    "sources": [
+        "charts-chartist.scss"
+    ],
+    "names": [],
+    "file": "charts-chartist.css"
+}
