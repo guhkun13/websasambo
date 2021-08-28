@@ -54,7 +54,8 @@
 
             <div class="col l6 s12">
               <label> Tanggal Lahir </label>
-              <input name="tanggal_lahir" type="date" class="input-field" required value="{{obj.tanggal_lahir}}">
+              <input name="tanggal_lahir" type="date" class="input-field" required
+                value="{{obj.tanggal_lahir|date:"Y-m-d"}}">
             </div>
 
             <div class="col l6 s12">
@@ -69,7 +70,7 @@
 
             <div class="col l6 s12">
               <label> Nomor HP </label>
-              <input name="nomor_hp" type="text" class="input-field" value="{{obj.nomor_hp}}">
+              <input name="nomor_hp" type="text" class="input-field" value="{{obj.nomor_hp }}">
             </div>
 
             <div class="col l6 s12">
