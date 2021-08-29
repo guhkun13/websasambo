@@ -3,6 +3,7 @@ import json
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 
+from mainapp.models import Log
 from pengguna.models import Pengguna
 
 import datetime

@@ -104,8 +104,8 @@ def dashboard(request):
         'nomor_induk_studi', 
         'fk_anggota',
         'negara',
-        'fk_provinsi',
-        'fk_kabupaten',
+        'nama_provinsi',
+        'nama_kabupaten',
         'fk_jenjang_pendidikan',
     ]
 

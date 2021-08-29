@@ -42,8 +42,14 @@ def add(request):
     return render (request, html,context) 
 
 
-def edit(request):
-    pass 
+def edit(request, id):
+    context = {}
+
+    context['obj'] = RiwayatStudi.objects.get(id=id)
+    context['jenjang_pendidikans'] = JenjangPendidikan.objects.all()
+
+    html = app_name +  '/edit.html'
+    return render (request, html,context)  
 
 def save(request):
     func_name = "save"

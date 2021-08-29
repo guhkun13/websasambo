@@ -4,19 +4,21 @@
 <ul class="collapsible">
     <li>
         <div class="collapsible-header cyan">
-        <i class="material-icons">add</i> Jenjang: {{datas.fk_jenjang_pendidikan.nama}}
+            <i class="material-icons">add</i> Jenjang: {{datas.fk_jenjang_pendidikan.nama}}
         </div>
         <div class="collapsible-body">
             <div class="card card-primary primary">
-                <div class="card-content">        
-                    
-                    <table>            
+                <div class="card-content">
+                    <table>
                         {% for key in keys_rwstudi  %}
-                            <tr>    
-                                <td> {{ key|as_title }} </td> <td> : {% get_object_value datas key %} </td>
-                            </tr>
+                        <tr>
+                            <td> {{ key|as_title }} </td>
+                            <td> : {% get_object_value datas key %} </td>
+                        </tr>
                         {% endfor %}
-                    </table> 
+                    </table>
+                    <br>
+                    <a href="{% url 'riwayatstudi:edit' datas.pk %}" class="btn"> Edit </a>
                 </div>
             </div>
         </div>
@@ -24,4 +26,3 @@
 </ul>
 
 {% endfor %}
-
