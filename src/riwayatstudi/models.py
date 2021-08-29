@@ -10,8 +10,8 @@ class RiwayatStudi(models.Model):
     
     id = models.AutoField(primary_key=True)
     fk_anggota = models.ForeignKey(Pengguna, on_delete=models.CASCADE)
-    nama_instansi = models.CharField(max_length=255)
     nomor_induk_studi = models.CharField(max_length=20, unique=True)
+    nama_instansi = models.CharField(max_length=255)
     negara = models.CharField(max_length=255, default='INDONESIA')
     provinsi = models.CharField(max_length=255, blank=True, null=True)
     kabupaten = models.CharField(max_length=255, blank=True, null=True)
@@ -23,10 +23,12 @@ class RiwayatStudi(models.Model):
     fakultas = models.CharField(max_length=255, blank=True) # untuk PT
     jurusan = models.CharField(max_length=255, blank=True) # IPA, IPS, dsb
     jalur_masuk = models.CharField(max_length=255, blank=True, null=True)
-    tahun_masuk = models.DateField()
-    tahun_keluar = models.DateField(null=True, blank=True)
+    
+    tahun_masuk = models.CharField(max_length=255, blank=True, null=True)
+    tahun_keluar = models.CharField(max_length=255, blank=True, null=True) 
     alasan_keluar = models.TextField(blank=True)
     is_beasiswa = models.BooleanField(null=True)
+    nama_beasiswa = models.CharField(max_length=255, blank=True,null=True)
      
     desc = models.TextField(blank=True)
     is_delete = models.BooleanField(default=False)

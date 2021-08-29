@@ -26,13 +26,13 @@ def index(request):
 
     print(member)    
 
-    html = 'pengguna/index.html'
+    html = app_name + '/index.html'
     return render (request, html, context) 
 
 def add(request):
     context = {}
 
-    html = 'pengguna/add.html'
+    html = app_name +  '/add.html'
     return render (request, html,context) 
 
 def edit(request, id):
@@ -40,7 +40,7 @@ def edit(request, id):
 
     context['obj'] = Pengguna.objects.get(id=id)
 
-    html = 'pengguna/edit.html'
+    html = app_name +  '/edit.html'
     return render (request, html,context)  
 
 def save(request):

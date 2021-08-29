@@ -94,8 +94,8 @@ class JenjangPendidikan(models.Model):
     PT = 'PERGURUAN TINGGI'
 
     JENIS_JENJANG_CHOICES = (
-        ('PT', PT), 
-        ('PMA', PMA)
+        ('PMA', PMA),
+        ('PT', PT)
     )
 
     id = models.AutoField(primary_key=True)

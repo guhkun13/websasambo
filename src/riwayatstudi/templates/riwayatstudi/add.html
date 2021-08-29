@@ -1,0 +1,184 @@
+{% extends "material-admin/base.html" %}
+{% load custom_tags %}
+{% load static %}
+
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+{% endblock %}
+
+{% block breadcrumb %}
+<!-- here you go -->
+{% endblock %}
+
+{% block content %}
+
+<div class="col s12 m12 l12">
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="msg {{ message.tags }}" {% endif %}> {{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+<div class="row">
+  <div class="col s12 m12 l12">
+    <div class="card card card-default scrollspy">
+      <div class="card-content">
+        <h5> Tambah Riwayat Studi [<b> {{request.user.username}}] </b> </h5>
+        <hr />
+        <form action="{% url 'riwayatstudi:save' %}" method="POST" class="form">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col l6 s12">
+              <label> Nomor Induk </label>
+              <input name="nomor_induk_studi" type="text" class="input-field" required>
+            </div>
+            <div class="col l6 s12">
+              <label> Nama Instansi </label>
+              <input name="nama_instansi" type="text" class="input-field" required>
+            </div>
+
+            <div class="col l6 s12">
+              <label> Negara </label>
+              <select id="negara_kuliah">
+                <option value="ID"> INDONESIA </option>
+                <option value="LAIN"> LUAR INDONESIA </option>
+              </select>
+            </div>
+
+            <div id="negara_id">
+
+              <div class="col l6 s12">
+                <label> Provinsi </label>
+                <select name="provinsi">
+                  <option value="ID"> INDONESIA </option>
+                  <option value="LAIN"> LUAR INDONESIA </option>
+                </select>
+              </div>
+
+              <div class="col l6 s12">
+                <label> Kabupaten </label>
+                <select name="kabupaten">
+                  <option value="ID"> INDONESIA </option>
+                  <option value="LAIN"> LUAR INDONESIA </option>
+                </select>
+              </div>
+
+            </div>
+
+            <div id="negara_lain" style="display:none">
+              <div class="col l6 s12">
+                <label> Nama Negara </label>
+                <input name="negara" type="text" class="input-field">
+              </div>
+
+              <div class="col l6 s12">
+                <label> Alamat Kampus </label>
+                <input name="alamat_kampus_luar_negeri" type="text" class="input-field">
+              </div>
+
+            </div>
+
+            <div class="col l6 s12">
+              <label> Ijazah Tertinggi </label>
+              <select id="jenjang_pendidikan" name="jenjang_pendidikan">
+                {% for data in jenjang_pendidikans %}
+                <option {% if instance.jenjang_pendidikan == data %} selected {% endif %} value="{{data.id}}"> {{data}}
+                </option>
+                {% endfor %}
+              </select>
+            </div>
+
+            {% comment %} div PMA {% endcomment %}
+            <div id="div_pma">
+
+            </div>
+
+            <div class="col l6 s12">
+              <label> Tahun Masuk </label>
+              <input name="tahun_masuk" type="text" class="input-field" required maxlength="4" pattern="[1-2][0-9]{3}">
+            </div>
+
+            <div class="col l6 s12">
+              <label> Tahun Keluar </label>
+              <input name="tahun_masuk" type="text" class="input-field" maxlength="4" pattern="[1-2][0-9]{3}">
+            </div>
+
+            <div class="col l6 s12">
+              <label> Alasan Keluar </label>
+              <input name="tahun_masuk" type="text" class="input-field">
+            </div>
+
+            <div class="col l6 s12">
+              <label> MENDAPAT BEASISWA </label>
+              <select id="is_beasiswa">
+                <option value="no"> TIDAK </option>
+                <option value="yes"> YES </option>
+              </select>
+            </div>
+
+            <div class="col l6 s12" id="div_nama_beasiswa" style="display: none;">
+              <label> Nama Beasiswa </label>
+              <input name="nama_beasiswa" type="text" class="input-field">
+            </div>
+
+            <div class="input-field col s12">
+              <button class="btn waves-effect waves-light submit" type="submit" name="action">
+                Submit <i class="material-icons right">send</i>
+              </button>
+
+              <a href="{% url 'mainapp:index' %}" class="btn red " type="button" name="action">
+                Cancel <i class="material-icons right">cancel</i>
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+
+<script>
+  // toggle input for tempat kuliah
+  $('#negara_kuliah').change(function () {
+    var lokasinegara = $(this).val();
+    // alert(lokasinegara);
+    if (lokasinegara == "LAIN") {
+      $('#negara_lain').show();
+      $('#negara_id').hide();
+    } else if (lokasinegara == "ID") {
+      $('#negara_lain').hide();
+      $('#negara_id').show();
+    }
+  });
+
+  $('#jenjang_pendidikan').change(function () {
+    let value = $(this).val();
+    // alert(lokasinegara);
+    if (value == "PMA") {
+      $('#div_pma').show();
+      $('#div_pt').hide();
+    } else if (value == "PT") {
+      $('#div_pma').hide();
+      $('#div_pt').show();
+    }
+  });
+
+  $('#is_beasiswa').change(function () {
+    let value = $(this).val();
+    // alert(lokasinegara);
+    if (value == "yes") {
+      $('#div_nama_beasiswa').show();
+    } else if (value == "no") {
+      $('#div_nama_beasiswa').hide();
+    }
+  });
+</script>
+
+{% endblock js%}
