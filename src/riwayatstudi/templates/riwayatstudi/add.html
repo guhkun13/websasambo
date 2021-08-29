@@ -4,7 +4,6 @@
 
 {% block css %}
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
 {% endblock %}
 
 {% block breadcrumb %}
@@ -53,11 +52,11 @@
 
               <div class="col l6 s12">
                 <label> Provinsi </label>
-                <select name="provinsi">
-                  <option value="11|NTB"> NTB </option>
-                  <option value="12|BALI"> BALI </option>
-                </select>
+                <div class="input-field">
+                  <select class="select2-data-array browser-default" id="select2-provinsi"></select>
+                </div>
               </div>
+
 
               <div class="col l6 s12">
                 <label> Kabupaten </label>
@@ -157,6 +156,9 @@
 {% endblock %}
 
 {% block js %}
+
+{% include 'riwayatstudi/lib/select2.html' %}
+
 
 <script>
   defaultValueJP();
