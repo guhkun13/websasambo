@@ -3,7 +3,7 @@ import json
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import *
+from pengguna.models import Pengguna
 
 import datetime
 
@@ -97,9 +97,11 @@ def get_object_model_name(obj):
 
 
 def get_pengguna_or_none(request):
+	print('get_pengguna_or_none')
 	try:
 		result = Pengguna.objects.get(user=request.user)
 	except Exception as e:
+		print(e)
 		result = None
 
 	return result

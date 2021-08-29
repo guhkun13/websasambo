@@ -13,11 +13,15 @@ class RiwayatStudi(models.Model):
     nomor_induk_studi = models.CharField(max_length=20, unique=True)
     nama_instansi = models.CharField(max_length=255)
     negara = models.CharField(max_length=255, default='INDONESIA')
-    provinsi = models.CharField(max_length=255, blank=True, null=True)
-    kabupaten = models.CharField(max_length=255, blank=True, null=True)
+    
+    id_provinsi = models.CharField(max_length=10, blank=True, null=True)
+    nama_provinsi = models.CharField(max_length=100, blank=True, null=True)
+    
+    id_kabupaten = models.CharField(max_length=10, blank=True, null=True)
+    nama_kabupaten = models.CharField(max_length=100, blank=True, null=True)
 
     is_indonesia = models.BooleanField(default=True)
-    alamat_kampus_luar_negeri = models.CharField(max_length=255, blank=True, null=True)
+    alamat_kampus_luar_negeri = models.TextField(blank=True, null=True)
 
     fk_jenjang_pendidikan = models.ForeignKey(JenjangPendidikan, verbose_name=("JenjangPendidikan"), on_delete=models.CASCADE)
     fakultas = models.CharField(max_length=255, blank=True) # untuk PT
