@@ -8,8 +8,18 @@
 {% endblock %}
 
 {% block breadcrumb %}
-<!-- here you go -->
-{% endblock %}
+<div class="col s12 m6 l6 ">
+  <h5 class="breadcrumbs-title"><span> <code> Edit : </code> [<b> {{request.user.username}} /
+        {{obj.fk_jenjang_pendidikan.nama}}]
+    </span></h5>
+</div>
+<div class="col s12 m6 l6 right-align-md">
+  <ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="{% url 'riwayatstudi:index' %}">Home</a></li>
+    <li class="breadcrumb-item">Edit</li>
+  </ol>
+</div>
+{% endblock breadcrumb %}
 
 {% block content %}
 
@@ -27,8 +37,6 @@
   <div class="col s12 m12 l12">
     <div class="card card card-default scrollspy">
       <div class="card-content">
-        <h5> Ubah Riwayat Studi [<b> {{request.user.username}} / {{obj.fk_jenjang_pendidikan.nama}}] </b> </h5>
-        <hr />
         <form action="{% url 'riwayatstudi:save' %}" method="POST" class="form">
           {% csrf_token %}
           <input type="hidden" name='pk' value='obj.id'>
@@ -146,7 +154,7 @@
                 Submit <i class="material-icons right">send</i>
               </button>
 
-              <a href="{% url 'mainapp:index' %}" class="btn red " type="button" name="action">
+              <a href="{% url 'riwayatstudi:index' %}" class="btn red " type="button" name="action">
                 Cancel <i class="material-icons right">cancel</i>
               </a>
             </div>

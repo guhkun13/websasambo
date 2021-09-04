@@ -83,20 +83,23 @@ def save(request):
                 data.negara = _POST.get('negara')
 
                 tempprov = _POST.get('provinsi').split('|')
+                print("tempprov = ", tempprov)
 
                 data.id_provinsi = tempprov[0]
                 data.nama_provinsi = tempprov[1]
 
                 tempkab = _POST.get('kabupaten').split('|')
+                print("tempkab = ", tempkab)
+
                 data.id_kabupaten = tempkab[0]
                 data.nama_kabupaten = tempkab[1]                
                 
-
                 temp_jenjang_pendidikan = _POST.get('jenjang_pendidikan')
                 id_jenjang_pendidikan = temp_jenjang_pendidikan.split('|')[0]
+                print("id_jenjang_pendidikan = ", id_jenjang_pendidikan)
                 jenjang_pendidikan = JenjangPendidikan.objects.get(pk=id_jenjang_pendidikan)
                 data.fk_jenjang_pendidikan = jenjang_pendidikan
-                data.negara = _POST.get('negara')
+                data.negara = _POST.get('negara', 'INDONESIA')
 
                 data.save()
 
@@ -108,7 +111,7 @@ def save(request):
                 messages.add_message(request, _ERROR, msg)
                 return HttpResponseRedirect(reverse('riwayatstudi:add'))
 
-            msg = 'berhasil assign pengguna'
+            msg = 'berhasil tambah ' + app_name
             messages.add_message(request, _SUCCESS, msg)
             return HttpResponseRedirect(reverse('riwayatstudi:index'))
     
@@ -116,4 +119,14 @@ def save(request):
     return HttpResponseRedirect(reverse('riwayatstudi:index')) 
 
 def delete(request, id):
-    pass 
+    func_name = 'delete'
+    try:
+        data = RiwayatStudi.objects.get(pk=id)
+        data.delete()
+    except Exception as e:
+        print ("exce on @" + app_name + "/" + func_name)
+        print (e)
+
+        msg = str(e)
+        messages.add_message(request, _ERROR, msg)
+    return HttpResponseRedirect(reverse('riwayatstudi:index'))    

@@ -7,8 +7,17 @@
 {% endblock %}
 
 {% block breadcrumb %}
-<!-- here you go -->
-{% endblock %}
+<div class="col s12 m6 l6 ">
+  <h5 class="breadcrumbs-title"><span> <code> Tambah Riwayat Studi </code> {{ request.user.username }}
+    </span></h5>
+</div>
+<div class="col s12 m6 l6 right-align-md">
+  <ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="{% url 'riwayatstudi:index' %}">Home</a></li>
+    <li class="breadcrumb-item">Add</li>
+  </ol>
+</div>
+{% endblock breadcrumb %}
 
 {% block content %}
 
@@ -26,8 +35,6 @@
   <div class="col s12 m12 l12">
     <div class="card card card-default scrollspy">
       <div class="card-content">
-        <h5> Tambah Riwayat Studi [<b> {{request.user.username}}] </b> </h5>
-        <hr />
         <form action="{% url 'riwayatstudi:save' %}" method="POST" class="form">
           {% csrf_token %}
           <div class="row">
@@ -48,39 +55,32 @@
               </select>
             </div>
 
-            <div id="negara_id">
-
-              <div class="col l6 s12">
-                <label> Provinsi </label>
-                <div class="input-field">
-                  <select class="select2-data-array browser-default" id="select2-provinsi"></select>
-                </div>
+            <div class="col l6 s12 negara_id">
+              <label> Provinsi </label>
+              <div class="input-field">
+                <select class="select2-data-array browser-default" id="select2-provinsi"></select>
               </div>
-
-
-              <div class="col l6 s12">
-                <label> Kabupaten </label>
-                <select name="kabupaten">
-                  <option value="11|LOTIM"> LOTIM </option>
-                  <option value="12|LOTENG"> LOTENG </option>
-                </select>
-              </div>
-
             </div>
 
-            <div id="negara_lain" style="display:none">
-              <div class="col l6 s12">
-                <label> Nama Negara </label>
-                <input name="negara" type="text" class="input-field">
+            <div class="col l6 s12 negara_id">
+              <label> Kabupaten </label>
+              <div class="input-field" style="height: 20px;">
+                <select class="select2-data-array browser-default" id="select2-kabupaten"></select>
               </div>
-
-              <div class="col l6 s12">
-                <label> Alamat Kampus </label>
-                <input name="alamat_kampus_luar_negeri" type="text" class="input-field">
-              </div>
-
             </div>
 
+            <input type="hidden" name="provinsi" id="hiddenProvinsi">
+            <input type="hidden" name="kabupaten" id="hiddenKabupaten">
+
+            <div class="col l6 s12 negara_lain">
+              <label> Nama Negara </label>
+              <input name="negara" type="text" class="input-field">
+            </div>
+
+            <div class="col l6 s12 negara_lain">
+              <label> Alamat Kampus </label>
+              <input name="alamat_kampus_luar_negeri" type="text" class="input-field">
+            </div>
             <div class="col l6 s12">
               <label> Ijazah Tertinggi </label>
               <select id="jenjang_pendidikan" name="jenjang_pendidikan">
@@ -95,8 +95,7 @@
             <div id="div_pt">
               <div class="col l6 s12">
                 <label> Fakultas </label>
-                {% comment %} <input name="fakultas" type="text" class="input-field"> {% endcomment %}
-
+                <input name="fakultas" type="text" class="input-field">
               </div>
             </div>
 
@@ -143,7 +142,7 @@
                 Submit <i class="material-icons right">send</i>
               </button>
 
-              <a href="{% url 'mainapp:index' %}" class="btn red " type="button" name="action">
+              <a href="{% url 'riwayatstudi:index' %}" class="btn red " type="button" name="action">
                 Cancel <i class="material-icons right">cancel</i>
               </a>
             </div>
@@ -162,16 +161,17 @@
 
 <script>
   defaultValueJP();
+  defaultValueNegara();
   // toggle input for tempat kuliah
   $('#negara_kuliah').change(function () {
     var lokasinegara = $(this).val();
     // alert(lokasinegara);
     if (lokasinegara == "LAIN") {
-      $('#negara_lain').show();
-      $('#negara_id').hide();
+      $('.negara_lain').show();
+      $('.negara_id').hide();
     } else if (lokasinegara == "ID") {
-      $('#negara_lain').hide();
-      $('#negara_id').show();
+      $('.negara_lain').hide();
+      $('.negara_id').show();
     }
   });
 
@@ -185,6 +185,25 @@
       $('#div_pt').show();
     } else if (value == "PMA") {
       $('#div_pt').hide();
+    }
+  }
+
+  function defaultValueNegara() {
+    console.log("call defaultValueNegara");
+    let tempvalue = $('#negara_kuliah').val();
+    let arrVal = tempvalue.split('|');
+    let value = arrVal[1];
+
+
+    if (value == "ID") {
+      $('.negara_id').show();
+      $('.negara_lain').hide();
+    } else if (value == "LAIN") {
+      $('.negara_id').hide();
+      $('.negara_lain').show();
+    } else {
+      $('.negara_id').show();
+      $('.negara_lain').hide();
     }
   }
 

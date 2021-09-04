@@ -6,8 +6,17 @@
 {% endblock %}
 
 {% block breadcrumb %}
-<!-- here you go -->
-{% endblock %}
+<div class="col s12 m6 l6 ">
+  <h5 class="breadcrumbs-title"><span> <code> Edit : </code> {{ request.user.username }}
+    </span></h5>
+</div>
+<div class="col s12 m6 l6 right-align-md">
+  <ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="{% url 'pengguna:index' %}">Home</a></li>
+    <li class="breadcrumb-item">Edit</li>
+  </ol>
+</div>
+{% endblock breadcrumb %}
 
 {% block content %}
 
@@ -25,8 +34,6 @@
   <div class="col s12 m12 l12">
     <div class="card card card-default scrollspy">
       <div class="card-content">
-        <h5> Edit Pengguna [<b> {{request.user.username}}] </b> </h5>
-        <hr />
         <form action="{% url 'pengguna:save' %}" method="POST" class="form">
           {% csrf_token %}
 
@@ -85,7 +92,7 @@
                 Submit <i class="material-icons right">send</i>
               </button>
 
-              <a href="{% url 'mainapp:index' %}" class="btn red " type="button" name="action">
+              <a href="{% url 'pengguna:index' %}" class="btn red " type="button" name="action">
                 Cancel <i class="material-icons right">cancel</i>
               </a>
             </div>
