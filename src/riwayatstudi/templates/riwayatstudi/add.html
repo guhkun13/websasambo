@@ -43,15 +43,15 @@
               <input name="nomor_induk_studi" type="text" class="input-field" required>
             </div>
             <div class="col l6 s12">
-              <label> Nama Instansi </label>
+              <label> Nama Sekolah/Kampus </label>
               <input name="nama_instansi" type="text" class="input-field" required>
             </div>
 
             <div class="col l6 s12">
               <label> Negara </label>
-              <select id="negara_kuliah">
-                <option value="ID"> INDONESIA </option>
-                <option value="LAIN"> LUAR INDONESIA </option>
+              <select id="negara_kuliah" name="negara">
+                <option value="INDONESIA"> INDONESIA </option>
+                <option value="LUAR INDONESIA"> LUAR INDONESIA </option>
               </select>
             </div>
 
@@ -69,12 +69,9 @@
               </div>
             </div>
 
-            <input type="hidden" name="provinsi" id="hiddenProvinsi">
-            <input type="hidden" name="kabupaten" id="hiddenKabupaten">
-
             <div class="col l6 s12 negara_lain">
               <label> Nama Negara </label>
-              <input name="negara" type="text" class="input-field">
+              <input name="nama_negara" type="text" class="input-field">
             </div>
 
             <div class="col l6 s12 negara_lain">
@@ -85,9 +82,7 @@
               <label> Ijazah Tertinggi </label>
               <select id="jenjang_pendidikan" name="jenjang_pendidikan">
                 {% for data in jenjang_pendidikans %}
-                <option {% if instance.jenjang_pendidikan == data %} selected {% endif %}
-                  value="{{data.id}}|{{data.jenis}}"> {{data.nama}}
-                </option>
+                <option value="{{data.id}}|{{data.jenis}}"> {{data.nama}} </option>
                 {% endfor %}
               </select>
             </div>
@@ -116,17 +111,17 @@
 
             <div class="col l6 s12">
               <label> Tahun Keluar </label>
-              <input name="tahun_masuk" type="text" class="input-field" maxlength="4" pattern="[1-2][0-9]{3}">
+              <input name="tahun_keluar" type="text" class="input-field" maxlength="4" pattern="[1-2][0-9]{3}">
             </div>
 
             <div class="col l6 s12">
               <label> Alasan Keluar </label>
-              <input name="tahun_masuk" type="text" class="input-field">
+              <input name="alasan_keluar" type="text" class="input-field">
             </div>
 
             <div class="col l6 s12">
               <label> MENDAPAT BEASISWA </label>
-              <select id="is_beasiswa">
+              <select id="is_beasiswa" name="is_beasiswa">
                 <option value="no"> TIDAK </option>
                 <option value="yes"> YES </option>
               </select>
@@ -136,6 +131,10 @@
               <label> Nama Beasiswa </label>
               <input name="nama_beasiswa" type="text" class="input-field">
             </div>
+
+            {% comment %} hidden fields {% endcomment %}
+            <input type="hidden" name="provinsi" id="hiddenProvinsi">
+            <input type="hidden" name="kabupaten" id="hiddenKabupaten">
 
             <div class="input-field col s12">
               <button class="btn waves-effect waves-light submit" type="submit" name="action">
@@ -157,80 +156,6 @@
 {% block js %}
 
 {% include 'riwayatstudi/lib/select2.html' %}
-
-
-<script>
-  defaultValueJP();
-  defaultValueNegara();
-  // toggle input for tempat kuliah
-  $('#negara_kuliah').change(function () {
-    var lokasinegara = $(this).val();
-    // alert(lokasinegara);
-    if (lokasinegara == "LAIN") {
-      $('.negara_lain').show();
-      $('.negara_id').hide();
-    } else if (lokasinegara == "ID") {
-      $('.negara_lain').hide();
-      $('.negara_id').show();
-    }
-  });
-
-  function defaultValueJP() {
-    console.log("call defaultValueJP");
-    let tempvalue = $('#jenjang_pendidikan').val();
-    let arrVal = tempvalue.split('|');
-    let value = arrVal[1];
-
-    if (value == "PT") {
-      $('#div_pt').show();
-    } else if (value == "PMA") {
-      $('#div_pt').hide();
-    }
-  }
-
-  function defaultValueNegara() {
-    console.log("call defaultValueNegara");
-    let tempvalue = $('#negara_kuliah').val();
-    let arrVal = tempvalue.split('|');
-    let value = arrVal[1];
-
-
-    if (value == "ID") {
-      $('.negara_id').show();
-      $('.negara_lain').hide();
-    } else if (value == "LAIN") {
-      $('.negara_id').hide();
-      $('.negara_lain').show();
-    } else {
-      $('.negara_id').show();
-      $('.negara_lain').hide();
-    }
-  }
-
-
-  $('#jenjang_pendidikan').change(function () {
-    let tempvalue = $(this).val();
-    let arrVal = tempvalue.split('|');
-    console.log(arrVal);
-    let value = arrVal[1];
-
-    // alert(lokasinegara);
-    if (value == "PT") {
-      $('#div_pt').show();
-    } else if (value == "PMA") {
-      $('#div_pt').hide();
-    }
-  });
-
-  $('#is_beasiswa').change(function () {
-    let value = $(this).val();
-    // alert(lokasinegara);
-    if (value == "yes") {
-      $('#div_nama_beasiswa').show();
-    } else if (value == "no") {
-      $('#div_nama_beasiswa').hide();
-    }
-  });
-</script>
+{% include 'riwayatstudi/lib/select-custom.html' %}
 
 {% endblock js%}

@@ -66,7 +66,6 @@ def record_log(state, user, desc):
 	log.desc = desc
 	log.save()
 
-
 def get_all_object_properties(object):
 	fields = object._meta.get_fields()
 	desc = {}
@@ -104,7 +103,7 @@ def get_pengguna_or_none(request):
 	except Exception as e:
 		print(e)
 		result = None
-
+	
 	return result
 
 def get_last_log_verifikasi(object):

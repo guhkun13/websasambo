@@ -39,65 +39,62 @@
       <div class="card-content">
         <form action="{% url 'riwayatstudi:save' %}" method="POST" class="form">
           {% csrf_token %}
-          <input type="hidden" name='pk' value='obj.id'>
           <div class="row">
             <div class="col l6 s12">
               <label> Nomor Induk </label>
-              <input name="nomor_induk_studi" type="text" class="input-field" required value={{obj.nomor_induk_studi}}>
+              <input name="nomor_induk_studi" type="text" class="input-field" required
+                value="{{obj.nomor_induk_studi}}">
             </div>
             <div class="col l6 s12">
-              <label> Nama Instansi </label>
-              <input name="nama_instansi" type="text" class="input-field" required value={{obj.nama_instansi}}>
+              <label> Nama Sekolah/Kampus </label>
+              <input name="nama_instansi" type="text" class="input-field" required value="{{obj.nama_instansi}}">
             </div>
 
             <div class="col l6 s12">
               <label> Negara </label>
-              <select id="negara_kuliah">
-                <option value="ID"> INDONESIA </option>
-                <option value="LAIN"> LUAR INDONESIA </option>
+              <select id="negara_kuliah" name="negara">
+                {% if obj.negara == 'INDONESIA' %}
+                <option value="INDONESIA" selected> INDONESIA </option>
+                <option value="LUAR INDONESIA"> LUAR INDONESIA </option>
+                {% else %}
+                <option value="INDONESIA"> INDONESIA </option>
+                <option value="LUAR INDONESIA" selected> LUAR INDONESIA </option>
+                {% endif %}
               </select>
             </div>
 
-            <div id="negara_id">
-              <div class="col l6 s12">
-                <label> Provinsi </label>
-                <select name="provinsi">
-                  <option value="11|NTB"> NTB </option>
-                  <option value="12|BALI"> BALI </option>
-                </select>
+            <div class="col l6 s12 negara_id">
+              <label> Provinsi </label>
+              <div class="input-field">
+                <select class="select2-data-array browser-default" id="select2-provinsi"></select>
               </div>
-
-              <div class="col l6 s12">
-                <label> Kabupaten </label>
-                <select name="kabupaten">
-                  <option value="11|LOTIM"> LOTIM </option>
-                  <option value="12|LOTENG"> LOTENG </option>
-                </select>
-              </div>
-
             </div>
 
-            <div id="negara_lain" style="display:none">
-              <div class="col l6 s12">
-                <label> Nama Negara </label>
-                <input name="negara" type="text" class="input-field" value={{obj.nama_negara}}>
+            <div class="col l6 s12 negara_id">
+              <label> Kabupaten </label>
+              <div class="input-field" style="height: 20px;">
+                <select class="select2-data-array browser-default" id="select2-kabupaten"></select>
               </div>
-
-              <div class="col l6 s12">
-                <label> Alamat Kampus </label>
-                <input name="alamat_kampus_luar_negeri" type="text" class="input-field"
-                  value={{obj.alamat_kampus_luar_negeri}}>
-              </div>
-
             </div>
 
+            <div class="col l6 s12 negara_lain">
+              <label> Nama Negara </label>
+              <input name="nama_negara" type="text" class="input-field" value={{obj.nama_negara}}>
+            </div>
+
+            <div class="col l6 s12 negara_lain">
+              <label> Alamat Kampus </label>
+              <input name="alamat_kampus_luar_negeri" type="text" class="input-field" value={{obj.nama_negara}}>
+            </div>
             <div class="col l6 s12">
               <label> Ijazah Tertinggi </label>
               <select id="jenjang_pendidikan" name="jenjang_pendidikan">
                 {% for data in jenjang_pendidikans %}
-                <option {% if obj.jenjang_pendidikan == data %} selected {% endif %} value="{{data.id}}|{{data.jenis}}">
-                  {{data.nama}}
-                </option>
+                {% if obj.fk_jenjang_pendidikan == data %}
+                <option value="{{data.id}}|{{data.jenis}}" selected> {{data.nama}}</option>
+                {% else %}
+                <option value="{{data.id}}|{{data.jenis}}"> {{data.nama}}</option>
+                {% endif %}
                 {% endfor %}
               </select>
             </div>
@@ -106,7 +103,6 @@
               <div class="col l6 s12">
                 <label> Fakultas </label>
                 <input name="fakultas" type="text" class="input-field" value={{obj.fakultas}}>
-
               </div>
             </div>
 
@@ -117,30 +113,36 @@
 
             <div class="col l6 s12">
               <label> Jalur Masuk </label>
-              <input name="jalur_masuk" type="text" class="input-field" value={{obj.jalur_masuk}}>
+              <input name="jalur_masuk" type="text" class="input-field" value={{obj.jalur_masuk|default_if_none:""}}>
             </div>
 
             <div class="col l6 s12">
               <label> Tahun Masuk </label>
               <input name="tahun_masuk" type="text" class="input-field" maxlength="4" pattern="[1-2][0-9]{3}"
-                value={{obj.tahun_masuk}}>
+                value={{obj.tahun_masuk|default_if_none:""}}>
             </div>
 
             <div class="col l6 s12">
               <label> Tahun Keluar </label>
-              <input name="tahun_masuk" type="text" class="input-field" maxlength="4" pattern="[1-2][0-9]{3}">
+              <input name="tahun_masuk" type="text" class="input-field" maxlength="4" pattern="[1-2][0-9]{3}"
+                value={{obj.tahun_keluar|default_if_none:""}}>
             </div>
 
             <div class="col l6 s12">
               <label> Alasan Keluar </label>
-              <input name="tahun_masuk" type="text" class="input-field" value={{obj.alasan_keluar}}>
+              <input name="alasan_keluar" type="text" class="input-field" value={{obj.alasan_keluar}}>
             </div>
 
             <div class="col l6 s12">
               <label> MENDAPAT BEASISWA </label>
-              <select id="is_beasiswa">
+              <select id="is_beasiswa" name="is_beasiswa">
+                {% if obj.is_beasiswa %}
                 <option value="no"> TIDAK </option>
+                <option value="yes" selected> YES </option>
+                {% else %}
+                <option value="no" selected> TIDAK </option>
                 <option value="yes"> YES </option>
+                {% endif %}
               </select>
             </div>
 
@@ -148,6 +150,10 @@
               <label> Nama Beasiswa </label>
               <input name="nama_beasiswa" type="text" class="input-field" value={{obj.nama_beasiswa}}>
             </div>
+
+            <input type="hidden" name="pk" value="{{obj.pk}}">
+            <input type="hidden" name="provinsi" id="hiddenProvinsi" value={{obj.id_provinsi}}>
+            <input type="hidden" name="kabupaten" id="hiddenKabupaten" value={{obj.id_kabupaten}}>
 
             <div class="input-field col s12">
               <button class="btn waves-effect waves-light submit" type="submit" name="action">
@@ -168,58 +174,7 @@
 
 {% block js %}
 
-<script>
-  defaultValueJP();
-  // toggle input for tempat kuliah
-  $('#negara_kuliah').change(function () {
-    var lokasinegara = $(this).val();
-    // alert(lokasinegara);
-    if (lokasinegara == "LAIN") {
-      $('#negara_lain').show();
-      $('#negara_id').hide();
-    } else if (lokasinegara == "ID") {
-      $('#negara_lain').hide();
-      $('#negara_id').show();
-    }
-  });
-
-  function defaultValueJP() {
-    console.log("call defaultValueJP");
-    let tempvalue = $('#jenjang_pendidikan').val();
-    let arrVal = tempvalue.split('|');
-    let value = arrVal[1];
-
-    if (value == "PT") {
-      $('#div_pt').show();
-    } else if (value == "PMA") {
-      $('#div_pt').hide();
-    }
-  }
-
-
-  $('#jenjang_pendidikan').change(function () {
-    let tempvalue = $(this).val();
-    let arrVal = tempvalue.split('|');
-    console.log(arrVal);
-    let value = arrVal[1];
-
-    // alert(lokasinegara);
-    if (value == "PT") {
-      $('#div_pt').show();
-    } else if (value == "PMA") {
-      $('#div_pt').hide();
-    }
-  });
-
-  $('#is_beasiswa').change(function () {
-    let value = $(this).val();
-    // alert(lokasinegara);
-    if (value == "yes") {
-      $('#div_nama_beasiswa').show();
-    } else if (value == "no") {
-      $('#div_nama_beasiswa').hide();
-    }
-  });
-</script>
+{% include 'riwayatstudi/lib/select2.html' %}
+{% include 'riwayatstudi/lib/select-custom.html' %}
 
 {% endblock js%}

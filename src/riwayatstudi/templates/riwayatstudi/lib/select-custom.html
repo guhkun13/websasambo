@@ -1,0 +1,72 @@
+<script>
+    defaultValueJP();
+    defaultValueNegara();
+    $('#negara_kuliah').change(function () {
+        var lokasinegara = $(this).val();
+
+        if (lokasinegara == "INDONESIA") {
+            $('.negara_id').show();
+            $('.negara_lain').hide();
+        } else {
+            $('.negara_lain').show();
+            $('.negara_id').hide();
+        }
+    });
+
+    function defaultValueJP() {
+        console.log("call defaultValueJP");
+        let tempvalue = $('#jenjang_pendidikan').val();
+        let arrVal = tempvalue.split('|');
+        let value = arrVal[1];
+
+        if (value == "PT") {
+            $('#div_pt').show();
+        } else if (value == "PMA") {
+            $('#div_pt').hide();
+        }
+    }
+
+    function defaultValueNegara() {
+        console.log("call defaultValueNegara");
+        let tempvalue = $('#negara_kuliah').val();
+        let arrVal = tempvalue.split('|');
+        let value = arrVal[1];
+
+
+        if (value == "INDONESIA") {
+            $('.negara_id').show();
+            $('.negara_lain').hide();
+        } else if (value == "LUAR INDONESIA") {
+            $('.negara_id').hide();
+            $('.negara_lain').show();
+        } else {
+            $('.negara_id').show();
+            $('.negara_lain').hide();
+        }
+    }
+
+
+    $('#jenjang_pendidikan').change(function () {
+        let tempvalue = $(this).val();
+        let arrVal = tempvalue.split('|');
+        console.log(arrVal);
+        let value = arrVal[1];
+
+        // alert(lokasinegara);
+        if (value == "PT") {
+            $('#div_pt').show();
+        } else if (value == "PMA") {
+            $('#div_pt').hide();
+        }
+    });
+
+    $('#is_beasiswa').change(function () {
+        let value = $(this).val();
+        // alert(lokasinegara);
+        if (value == "yes") {
+            $('#div_nama_beasiswa').show();
+        } else if (value == "no") {
+            $('#div_nama_beasiswa').hide();
+        }
+    });
+</script>

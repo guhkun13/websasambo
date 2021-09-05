@@ -2,36 +2,67 @@
 <script>
     var urlProvinsi = "https://ibnux.github.io/data-indonesia/propinsi.json";
     var urlKabupaten = "https://ibnux.github.io/data-indonesia/kabupaten/";
+    var fieldProvinsi = 'hiddenProvinsi';
+    var selectProv = $('#select2-provinsi');
+    var fieldKabupaten = 'hiddenKabupaten';
+    var selectKab = $('#select2-kabupaten');
+
+    var idProvinsiNTB = '52';
 
     console.log('url: ' + urlProvinsi);
-    $.getJSON(urlProvinsi, function (res) {
-        console.log("INSIDE FUNC");
-        //console.log(res);
-
-        var data = $.map(res, function (obj) {
-            obj.text = obj.nama
-
-            return obj;
-        });
-        //console.log(data);
-        loadProvinsi(data);
-    });
-
-    function fetchDataKabupaten(idProvinsi) {
-        let url = urlKabupaten + idProvinsi + ".json";
-        console.log('url kab : ' + url);
-        $.getJSON(url, function (res) {
-            console.log("INSIDE FUNC Kabupaten");
-            //console.log(res);
+    $.getJSON(urlProvinsi)
+        .done(function (res) {
 
             var data = $.map(res, function (obj) {
                 obj.text = obj.nama
 
                 return obj;
             });
-            //console.log(data);
-            loadKabupaten(data);
+            loadProvinsi(data);
+            assignDefaultValueProvinsi();
         });
+
+    function assignDefaultValueProvinsi() {
+        console.log('assignDefaultValueProvinsi');
+
+        var data = getValueFromID(fieldProvinsi);
+        if (data != "") {
+            console.log("DATA PROV EXIST = " + data)
+            $(selectProv).val(data).change();
+        } else {
+            console.log("DATA PROV NOT EXIST , ASSIGN NTB")
+            $(selectProv).val(idProvinsiNTB).change();
+        }
+    }
+
+    function assignDefaultValueKabupaten() {
+        console.log('assignDefaultValueKabupaten');
+
+        var data = getValueFromID(fieldKabupaten);
+        console.log(data);
+        if (data == "") {
+            console.log("DATA KAB NOT EXIST , ASSIGN 5201")
+            $(selectKab).val('5201').change();
+        } else {
+            console.log("DATA KAB EXIST = " + data, ' - typeof: ', typeof (data))
+            $(selectKab).val(data).change();
+        }
+    }
+
+    function fetchDataKabupaten(idProvinsi) {
+        let url = urlKabupaten + idProvinsi + ".json";
+        console.log('url kab : ' + url);
+        $.getJSON(url)
+            .done(function (res) {
+
+                var data = $.map(res, function (obj) {
+                    obj.text = obj.nama
+
+                    return obj;
+                });
+                loadKabupaten(data);
+                assignDefaultValueKabupaten();
+            });
     }
 
 
@@ -55,8 +86,6 @@
 
     function clearOptions(id) {
         console.log("on clearOptions");
-
-        //$('#' + id).val(null);
         $('#' + id).empty().trigger('change');
     }
 
@@ -68,13 +97,12 @@
     function getValueFromID(id) {
         console.log('on getValueFromID: ', id);
         var res = $('#' + id).val();
-        console.log('res: ', res);
+        //console.log('res: ', res);
 
         return res;
     }
 
-    var fieldProvinsi = 'hiddenProvinsi';
-    var selectProv = $('#select2-provinsi');
+
     $(selectProv).change(function () {
         console.log("on change selectProv");
 
@@ -89,22 +117,26 @@
 
         clearOptions('select2-kabupaten');
         dataKabupaten = fetchDataKabupaten(value);
-        loadKabupaten(dataKabupaten);
+        console.log('fetchDataKabupaten : ' + value);
+        console.log(dataKabupaten);
 
     });
 
-    var fieldKabupaten = 'hiddenKabupaten';
-    var selectKab = $('#select2-kabupaten');
+
     $(selectKab).change(function () {
         console.log("on change selectKab");
 
-        var value = $(this).val();
+        var value = $(selectKab).val();
         var text = $('#select2-kabupaten :selected').text();
         console.log("value = " + value + " / " + "text = " + text);
 
-        var tempNewValue = value + '|' + text;
-        assignValueToID(fieldKabupaten, tempNewValue);
-        var newValue = getValueFromID(fieldKabupaten);
-        console.log("newValue = " + newValue);
+        if (text != '') {
+            console.log("value kab NOT NULL = " + value);
+            var tempNewValue = value + '|' + text;
+            assignValueToID(fieldKabupaten, tempNewValue);
+            var newValue = getValueFromID(fieldKabupaten);
+            console.log("newValue = " + newValue);
+        }
+
     });
 </script>
