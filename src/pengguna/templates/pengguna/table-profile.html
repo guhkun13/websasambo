@@ -1,0 +1,42 @@
+<table class="table">
+    <tr>
+        <td> Nomor Induk Anggota </td>
+        <td> {{ pengguna.nomor_induk_anggota }} </td>
+    </tr>
+    <tr>
+        <td> Nama Lengkap </td>
+        <td> {{ pengguna.nama_lengkap }} </td>
+    </tr>
+    <tr>
+        <td> Nama Panggilan </td>
+        <td> {{ pengguna.nama_panggilan }} </td>
+    </tr>
+    <tr>
+        <td> Jenis Kelamin </td>
+        <td> {{ pengguna.jenis_kelamin }} </td>
+    </tr>
+    <tr>
+        <td> Tempat Tanggal Lahir </td>
+        <td> {{ pengguna.tempat_lahir|default_if_none:"" }} - {{pengguna.tanggal_lahir}} </td>
+    </tr>
+    <tr>
+        <td> Ijazah Tertinggi</td>
+        <td> {{ pengguna.fk_ijazah_tertinggi.nama }} </td>
+    </tr>
+    <tr>
+        <td> Nomor HP </td>
+        <td> {{ pengguna.nomor_hp|default_if_none:"" }} </td>
+    </tr>
+    <tr>
+        <td> Email </td>
+        <td> {{ pengguna.email }} </td>
+    </tr>
+    <tr>
+        <td> User </td>
+        <td> {{ pengguna.user }} </td>
+    </tr>
+    <tr>
+        <td> Created / Updated</td>
+        <td> {{ pengguna.created_at }} <br />/ {{ pengguna.updated_at }} </td>
+    </tr>
+</table>

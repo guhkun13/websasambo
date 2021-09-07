@@ -21,10 +21,9 @@ app_name = 'pengguna'
 
 def index(request):
     context = {}
-    member = Pengguna.objects.filter(user=request.user)
-    context['penggunas'] = member.values()
+    pengguna = Pengguna.objects.get(user=request.user)
 
-    print(member)    
+    context['pengguna'] = pengguna
 
     html = app_name + '/index.html'
     return render (request, html, context) 
@@ -43,6 +42,22 @@ def edit(request, id):
     html = app_name +  '/edit.html'
     return render (request, html,context)  
 
+
+def impl_save_pengguna(request, data, _POST, tipe):
+
+    data.nomor_induk_anggota = _POST.get('nomor_induk_anggota')
+    data.nama_lengkap = _POST.get('nama_lengkap')
+    data.nama_panggilan = _POST.get('nama_panggilan')
+    data.jenis_kelamin = _POST.get('jenis_kelamin')
+    data.tempat_lahir = _POST.get('tempat_lahir')
+    data.tanggal_lahir = _POST.get('tanggal_lahir')
+
+    data.nomor_hp = _POST.get('nomor_hp')
+    data.email = _POST.get('email')
+    if (tipe == 'new'):
+        data.user = get_user_by_username(_POST.get('username'))
+    return data
+
 def save(request):
     func_name = "save"
     context = {}
@@ -56,8 +71,9 @@ def save(request):
             # means update
             try:
                 data = Pengguna.objects.get(pk=_POST.get('pk'))
-                data.jenis_kelamin = _POST.get('jenis_kelamin')
+                data = impl_save_pengguna(request, data, _POST, 'update')
                 data.save()
+
             except Exception as e:
                 print ("exce on @" + app_name + "/" + func_name)
                 print (e)
@@ -68,11 +84,7 @@ def save(request):
         else:
             try:
                 data = Pengguna()
-                data.nama_lengkap = _POST.get('nama_lengkap')
-                data.nama_panggilan = _POST.get('nama_panggilan')
-                data.tanggal_lahir = _POST.get('tanggal_lahir')
-                data.jenis_kelamin = _POST.get('jenis_kelamin')
-                data.user = get_user_by_username(_POST.get('username'))
+                data = impl_save_pengguna(request, data, _POST, 'new')
                 data.save()
 
             except Exception as e:

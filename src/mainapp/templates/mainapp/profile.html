@@ -9,15 +9,7 @@
         <div class="collapsible-body">
             <div class="card card-primary primary">
                 <div class="card-content">
-                    <table>
-                        {% for key in datas  %}
-                        <tr>
-                            <td> {{ key|as_title }} </td>
-                            <td> : {% get_dict_value datas key %} </td>
-                        </tr>
-                        {% endfor %}
-
-                    </table>
+                    {% include 'pengguna/table-profile.html' %}
                     <br />
                     <p>
                         <a href="{% url 'pengguna:edit' pengguna.id %}" class="btn"> Edit </a>

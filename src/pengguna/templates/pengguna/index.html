@@ -25,25 +25,13 @@
   <div class="col s12 m6 l6">
     <div class="card card card-default scrollspy">
       <div class="card-content">
-        <table class="table">
-          <table>
-            {% for pengguna in penggunas %}
-            {% for key in pengguna %}
-            <tr>
-              <td> {{ key|as_title }} </td>
-              <td> : {% get_dict_value pengguna key %} </td>
-            </tr>
-            {% endfor %}
-            <tr>
-              <td>
-                <p>
-                  <a href="{% url 'pengguna:edit' pengguna.id %}" class="btn"> Edit </a>
-                </p>
-              </td>
-            </tr>
-            {% endfor %}
-          </table>
-        </table>
+
+        {% include 'pengguna/table-profile.html' %}
+        <br />
+        <p>
+          <a href="{% url 'pengguna:edit' pengguna.id %}" class="btn"> Edit </a>
+        </p>
+
       </div>
     </div>
   </div>
