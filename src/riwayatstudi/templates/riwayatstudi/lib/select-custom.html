@@ -1,6 +1,8 @@
 <script>
     defaultValueJP();
     defaultValueNegara();
+    defaultValueBeasiswa();
+
     $('#negara_kuliah').change(function () {
         var lokasinegara = $(this).val();
 
@@ -45,6 +47,16 @@
         }
     }
 
+    function defaultValueBeasiswa() {
+        console.log("call defaultValueBeasiswa");
+        let value = $('#is_beasiswa').val();
+
+        if (value == "1") {
+            $('#div_nama_beasiswa').show();
+        } else {
+            $('#div_nama_beasiswa').hide();
+        }
+    }
 
     $('#jenjang_pendidikan').change(function () {
         let tempvalue = $(this).val();
@@ -62,10 +74,10 @@
 
     $('#is_beasiswa').change(function () {
         let value = $(this).val();
-        // alert(lokasinegara);
-        if (value == "yes") {
+        console.log('bea = ' + value)
+        if (value == "1") {
             $('#div_nama_beasiswa').show();
-        } else if (value == "no") {
+        } else {
             $('#div_nama_beasiswa').hide();
         }
     });

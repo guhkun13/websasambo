@@ -1,24 +1,17 @@
 {% load custom_tags %}
 
-{% for datas in riwayat_studi %}
+{% for studi in riwayat_studi %}
 <ul class="collapsible">
     <li>
         <div class="collapsible-header cyan">
-            <i class="material-icons">add</i> {{datas.fk_jenjang_pendidikan.nama}} / {{datas.nomor_induk_studi}} /
-            {{datas.nama_instansi}}
+            <i class="material-icons">add</i> {{studi.fk_jenjang_pendidikan.nama}} / {{studi.nomor_induk_studi}} /
+            {{studi.nama_instansi}}
         </div>
         <div class="collapsible-body">
             <div class="card card-primary primary">
                 <div class="card-content">
-                    <table>
-                        {% for key in keys_rwstudi  %}
-                        <tr>
-                            <td> {{ key|as_title }} </td>
-                            <td> : {% get_object_value datas key %} </td>
-                        </tr>
-                        {% endfor %}
-                    </table>
-                    <br>
+                    {% include 'riwayatstudi/table-studi.html' %}
+                    <br />
                     <a href="{% url 'riwayatstudi:edit' datas.pk %}" class="btn"> Edit </a>
                     <a href="{% url 'riwayatstudi:delete' datas.pk %}" class="btn red"> Delete </a>
                 </div>

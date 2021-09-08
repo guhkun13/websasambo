@@ -39,7 +39,7 @@
           {% csrf_token %}
           <div class="row">
             <div class="col l6 s12">
-              <label> Nomor Induk </label>
+              <label> Nomor Induk Studi </label>
               <input name="nomor_induk_studi" type="text" class="input-field" required>
             </div>
             <div class="col l6 s12">
@@ -122,8 +122,8 @@
             <div class="col l6 s12">
               <label> MENDAPAT BEASISWA </label>
               <select id="is_beasiswa" name="is_beasiswa">
-                <option value="no"> TIDAK </option>
-                <option value="yes"> YES </option>
+                <option value="0"> TIDAK </option>
+                <option value="1"> YES </option>
               </select>
             </div>
 

@@ -124,7 +124,7 @@
 
             <div class="col l6 s12">
               <label> Tahun Keluar </label>
-              <input name="tahun_masuk" type="text" class="input-field" maxlength="4" pattern="[1-2][0-9]{3}"
+              <input name="tahun_keluar" type="text" class="input-field" maxlength="4" pattern="[1-2][0-9]{3}"
                 value={{obj.tahun_keluar|default_if_none:""}}>
             </div>
 
@@ -137,18 +137,19 @@
               <label> MENDAPAT BEASISWA </label>
               <select id="is_beasiswa" name="is_beasiswa">
                 {% if obj.is_beasiswa %}
-                <option value="no"> TIDAK </option>
-                <option value="yes" selected> YES </option>
+                <option value="0"> TIDAK </option>
+                <option value="1" selected> YES </option>
                 {% else %}
-                <option value="no" selected> TIDAK </option>
-                <option value="yes"> YES </option>
+                <option value="0" selected> TIDAK </option>
+                <option value="1"> YES </option>
                 {% endif %}
               </select>
             </div>
 
             <div class="col l6 s12" id="div_nama_beasiswa" style="display: none;">
               <label> Nama Beasiswa </label>
-              <input name="nama_beasiswa" type="text" class="input-field" value={{obj.nama_beasiswa}}>
+              <input name="nama_beasiswa" type="text" class="input-field"
+                value={{obj.nama_beasiswa|default_if_none:""}}>
             </div>
 
             <input type="hidden" name="pk" value="{{obj.pk}}">

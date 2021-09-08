@@ -66,7 +66,7 @@ def impl_save_pengguna(request, data, _POST, tipe):
     if (tipe == 'new'):
         data.user = get_user_by_username(_POST.get('username'))
 
-    return data
+    data.save()
 
 @login_required
 def save(request):
@@ -84,8 +84,8 @@ def save(request):
             pk = _POST.get('pk')
             try:
                 data = Pengguna.objects.get(pk=_POST.get('pk'))
-                data = impl_save_pengguna(request, data, _POST, 'update')
-                data.save()
+                impl_save_pengguna(request, data, _POST, 'update')
+                
 
             except Exception as e:
                 print ("exce on @" + app_name + "/" + func_name)
@@ -97,8 +97,7 @@ def save(request):
         else:
             try:
                 data = Pengguna()
-                data = impl_save_pengguna(request, data, _POST, 'new')
-                data.save()
+                impl_save_pengguna(request, data, _POST, 'new')
 
             except Exception as e:
                 print ("exce on @" + app_name + "/" + func_name)

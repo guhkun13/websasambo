@@ -26,8 +26,8 @@ class RiwayatStudi(models.Model):
     fk_jenjang_pendidikan = models.ForeignKey(JenjangPendidikan, verbose_name=("JenjangPendidikan"), on_delete=models.CASCADE)
     fakultas = models.CharField(max_length=255, blank=True) # untuk PT
     jurusan = models.CharField(max_length=255, blank=True) # IPA, IPS, dsb
-    jalur_masuk = models.CharField(max_length=255, blank=True, null=True)
     
+    jalur_masuk = models.CharField(max_length=255, blank=True, null=True)    
     tahun_masuk = models.CharField(max_length=255, blank=True, null=True)
     tahun_keluar = models.CharField(max_length=255, blank=True, null=True) 
     alasan_keluar = models.TextField(blank=True)
