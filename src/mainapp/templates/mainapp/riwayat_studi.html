@@ -3,8 +3,9 @@
 {% for studi in riwayat_studi %}
 <ul class="collapsible">
     <li>
-        <div class="collapsible-header cyan">
-            <i class="material-icons">add</i> {{studi.fk_jenjang_pendidikan.nama}} / {{studi.nomor_induk_studi}} /
+        <div class="collapsible-header cyan white-text">
+            <i class="material-icons">add</i>
+            {{studi.fk_jenjang_pendidikan.nama}} / {{studi.nomor_induk_studi}} /
             {{studi.nama_instansi}}
         </div>
         <div class="collapsible-body">
@@ -12,8 +13,8 @@
                 <div class="card-content">
                     {% include 'riwayatstudi/table-studi.html' %}
                     <br />
-                    <a href="{% url 'riwayatstudi:edit' datas.pk %}" class="btn"> Edit </a>
-                    <a href="{% url 'riwayatstudi:delete' datas.pk %}" class="btn red"> Delete </a>
+                    <a href="{% url 'riwayatstudi:edit' studi.pk %}" class="btn"> Edit </a>
+                    <a href="{% url 'riwayatstudi:delete' studi.pk %}" class="btn red"> Delete </a>
                 </div>
             </div>
         </div>

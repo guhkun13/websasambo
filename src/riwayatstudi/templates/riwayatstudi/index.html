@@ -22,9 +22,14 @@
 </div>
 
 <div class="row">
-  <p>
-    <a href="{% url 'riwayatstudi:add' %}" class="btn"> Tambah Data </a>
-  </p>
+  <div class="col md 12">
+    <p>
+      <a href="{% url 'riwayatstudi:add' %}" class="btn"> Tambah Data </a>
+    </p>
+  </div>
+</div>
+
+<div class="row">
   {% for studi in datas %}
   <div class="col s12 m6 l6">
     <div class="card card card-default scrollspy">
