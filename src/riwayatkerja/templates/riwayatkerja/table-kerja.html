@@ -1,0 +1,46 @@
+<table class="table">
+    <tr>
+        <td colspan="2">
+            <h5>
+                {{ kerja.nama_instansi }} /
+                {{ kerja.tahun_masuk }} -
+                {{ kerja.tahun_keluar|default_if_none:"[]" }}
+            </h5>
+        </td>
+    </tr>
+
+    <tr>
+        <td> Nama Instansi/Perusahaan </td>
+        <td> {{ kerja.nama_instansi }} </td>
+    </tr>
+    <tr>
+        <td> Bidang </td>
+        <td> {{ kerja.bidang }} </td>
+    </tr>
+    <tr>
+        <td> Alamat </td>
+        <td> {{ kerja.alamat_instansi }} </td>
+    </tr>
+
+    <tr>
+        <td> Tahun Masuk - Keluar </td>
+        <td> {{ kerja.tahun_masuk|default_if_none:"" }}
+            - {{ kerja.tahun_keluar|default_if_none:"" }}
+        </td>
+    </tr>
+
+    <tr>
+        <td> Alasan Keluar </td>
+        <td> {{ kerja.alasan_keluar|default_if_none:"" }} </td>
+    </tr>
+
+    <tr>
+        <td> Jabatan/Posisi </td>
+        <td> {{ kerja.jabatan|default_if_none:"" }} </td>
+    </tr>
+
+    <tr>
+        <td> Created / Updated</td>
+        <td> {{ kerja.created_at }} <br />/ {{ kerja.updated_at }} </td>
+    </tr>
+</table>

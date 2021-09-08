@@ -8,12 +8,12 @@
 
 {% block breadcrumb %}
 <div class="col s12 m6 l6 ">
-  <h5 class="breadcrumbs-title"><span> <code> Tambah Riwayat Studi </code> {{ request.user.username }}
+  <h5 class="breadcrumbs-title"><span> <code> Tambah Riwayat Kerja </code> {{ request.user.username }}
     </span></h5>
 </div>
 <div class="col s12 m6 l6 right-align-md">
   <ol class="breadcrumbs mb-0">
-    <li class="breadcrumb-item"><a href="{% url 'riwayatstudi:index' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'riwayatkerja:index' %}">Home</a></li>
     <li class="breadcrumb-item">Add</li>
   </ol>
 </div>
@@ -25,17 +25,15 @@
   <div class="col s12 m12 l12">
     <div class="card card card-default scrollspy">
       <div class="card-content">
-        <form action="{% url 'riwayatstudi:save' %}" method="POST" class="form">
+        <form action="{% url 'riwayatkerja:save' %}" method="POST" class="form">
           {% csrf_token %}
           <div class="row">
 
-            {% include 'riwayatstudi/lib/add-edit-fields.html' %}
+            {% comment %} end of input form {% endcomment %}
+            {% include 'riwayatkerja/lib/add-edit-fields.html' %}
 
-            {% comment %} hidden fields {% endcomment %}
-            <input type="hidden" name="provinsi" id="hiddenProvinsi">
-            <input type="hidden" name="kabupaten" id="hiddenKabupaten">
-
-            {% include 'riwayatstudi/lib/submit.html' %}
+            {% comment %} button submit {% endcomment %}
+            {% include 'riwayatkerja/lib/submit.html' %}
 
           </div>
         </form>
@@ -46,8 +44,5 @@
 {% endblock %}
 
 {% block js %}
-
-{% include 'riwayatstudi/lib/select2.html' %}
-{% include 'riwayatstudi/lib/select-custom.html' %}
 
 {% endblock js%}

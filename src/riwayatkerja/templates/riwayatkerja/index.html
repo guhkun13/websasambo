@@ -12,19 +12,26 @@
 {% block content %}
 
 <div class="row">
+  <div class="col md 12">
+    <p>
+      <a href="{% url 'riwayatkerja:add' %}" class="btn"> Tambah Data </a>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  {% for kerja in datas %}
   <div class="col s12 m6 l6">
     <div class="card card card-default scrollspy">
       <div class="card-content">
-
-        {% include 'pengguna/table-profile.html' %}
+        {% include 'riwayatkerja/table-kerja.html' %}
         <br />
-        <p>
-          <a href="{% url 'pengguna:edit' pengguna.id %}" class="btn"> Edit </a>
-        </p>
-
+        <a href="{% url 'riwayatkerja:edit' kerja.id %}" class="btn"> Edit </a>
+        <a href="{% url 'riwayatkerja:delete' kerja.id %}" class="btn red"> Delete </a>
       </div>
     </div>
   </div>
+  {% endfor %}
 </div>
 {% endblock %}
 

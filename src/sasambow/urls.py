@@ -13,6 +13,6 @@ urlpatterns = [
     path('survey/', include('survey.urls', namespace='survey')),
     path('pengguna/', include('pengguna.urls', namespace='pengguna')),
     path('riwayatstudi/', include('riwayatstudi.urls', namespace='riwayatstudi')),
-    # path('riwayatkerja/', include('riwayatkerja.urls', namespace='riwayatkerja')),
+    path('riwayatkerja/', include('riwayatkerja.urls', namespace='riwayatkerja')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

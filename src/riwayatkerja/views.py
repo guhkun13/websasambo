@@ -10,8 +10,8 @@ from django.contrib import auth, messages
 from mainapp.models import  JenjangPendidikan
 from mainapp.utils import get_pengguna_or_none
 
-from riwayatkerja.models import RiwayatStudi
-from riwayatstudi.utils import impl_save
+from riwayatkerja.models import RiwayatKerja
+from riwayatkerja.utils import impl_save
 
 _DEBUG	     = 10
 _INFO	     = 20
@@ -26,7 +26,7 @@ def index(request):
     context = {}
     
     pengguna = get_pengguna_or_none(request)
-    datas = RiwayatStudi.objects.filter(fk_anggota=pengguna)
+    datas = RiwayatKerja.objects.filter(fk_anggota=pengguna)
     context['datas'] = datas
 
     print(datas)
@@ -36,13 +36,7 @@ def index(request):
 
 @login_required
 def add(request):
-    print ("before render in ADD")
-    print(request)
-    print(request.GET)
-    print(request.POST)
     context = {}
-
-    context['jenjang_pendidikans'] = JenjangPendidikan.objects.all()
 
     html = app_name +'/add.html'
     
@@ -52,8 +46,7 @@ def add(request):
 def edit(request, id):
     context = {}
 
-    context['obj'] = RiwayatStudi.objects.get(id=id)
-    context['jenjang_pendidikans'] = JenjangPendidikan.objects.all()
+    context['obj'] = RiwayatKerja.objects.get(id=id)
 
     html = app_name +  '/edit.html'
 
@@ -74,7 +67,7 @@ def save(request):
             print("UPDATe!!!")
             # means update
             try:
-                data = RiwayatStudi.objects.get(pk=_POST.get('pk'))
+                data = RiwayatKerja.objects.get(pk=_POST.get('pk'))
                 impl_save(request, data, _POST)                
             except Exception as e:
                 print ("EX on @" + app_name + "#" + func_name)
@@ -82,11 +75,11 @@ def save(request):
 
                 msg = str(e)
                 messages.add_message(request, _ERROR, msg)
-                return HttpResponseRedirect(reverse('riwayatstudi:edit',args=[_POST.get('pk')]))                        
+                return HttpResponseRedirect(reverse(app_name+':edit',args=[_POST.get('pk')]))                        
         else:            
             print("CREATe NEW!!!")
             try:
-                data = RiwayatStudi()
+                data = RiwayatKerja()
                 impl_save(request, data, _POST)
             except Exception as e:
                 print ("EX on @" + app_name + "#" + func_name)
@@ -94,14 +87,14 @@ def save(request):
 
                 msg = str(e)
                 messages.add_message(request, _ERROR, msg)
-                return HttpResponseRedirect(reverse('riwayatstudi:add'))
+                return HttpResponseRedirect(reverse(app_name+':add'))
 
             msg = 'berhasil tambah ' + app_name
             messages.add_message(request, _SUCCESS, msg)
-            return HttpResponseRedirect(reverse('riwayatstudi:index'))
+            return HttpResponseRedirect(reverse(app_name+':index'))
     
         
-    return HttpResponseRedirect(reverse('riwayatstudi:index')) 
+    return HttpResponseRedirect(reverse(app_name+':index')) 
 
 @login_required
 def delete(request, id):
@@ -115,4 +108,4 @@ def delete(request, id):
 
         msg = str(e)
         messages.add_message(request, _ERROR, msg)
-    return HttpResponseRedirect(reverse('riwayatstudi:index'))    
+    return HttpResponseRedirect(reverse(app_name+':index'))    

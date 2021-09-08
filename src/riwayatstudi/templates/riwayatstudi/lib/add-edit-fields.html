@@ -1,0 +1,109 @@
+  <div class="col l6 s12">
+      <label> Nomor Induk </label>
+      <input name="nomor_induk_studi" type="text" class="input-field" required value="{{obj.nomor_induk_studi}}">
+  </div>
+  <div class="col l6 s12">
+      <label> Nama Sekolah/Kampus </label>
+      <input name="nama_instansi" type="text" class="input-field" required value="{{obj.nama_instansi}}">
+  </div>
+
+  <div class="col l6 s12">
+      <label> Negara </label>
+      <select id="negara_kuliah" name="negara">
+          {% if obj.negara == 'INDONESIA' %}
+          <option value="INDONESIA" selected> INDONESIA </option>
+          <option value="LUAR INDONESIA"> LUAR INDONESIA </option>
+          {% else %}
+          <option value="INDONESIA"> INDONESIA </option>
+          <option value="LUAR INDONESIA" selected> LUAR INDONESIA </option>
+          {% endif %}
+      </select>
+  </div>
+
+  <div class="col l6 s12 negara_id">
+      <label> Provinsi </label>
+      <div class="input-field">
+          <select class="select2-data-array browser-default" id="select2-provinsi"></select>
+      </div>
+  </div>
+
+  <div class="col l6 s12 negara_id">
+      <label> Kabupaten </label>
+      <div class="input-field" style="height: 20px;">
+          <select class="select2-data-array browser-default" id="select2-kabupaten"></select>
+      </div>
+  </div>
+
+  <div class="col l6 s12 negara_lain">
+      <label> Nama Negara </label>
+      <input name="nama_negara" type="text" class="input-field" value={{obj.nama_negara}}>
+  </div>
+
+  <div class="col l6 s12 negara_lain">
+      <label> Alamat Kampus </label>
+      <input name="alamat_kampus_luar_negeri" type="text" class="input-field" value={{obj.nama_negara}}>
+  </div>
+  <div class="col l6 s12">
+      <label> Ijazah Tertinggi </label>
+      <select id="jenjang_pendidikan" name="jenjang_pendidikan">
+          {% for data in jenjang_pendidikans %}
+          {% if obj.fk_jenjang_pendidikan == data %}
+          <option value="{{data.id}}|{{data.jenis}}" selected> {{data.nama}}</option>
+          {% else %}
+          <option value="{{data.id}}|{{data.jenis}}"> {{data.nama}}</option>
+          {% endif %}
+          {% endfor %}
+      </select>
+  </div>
+
+  <div id="div_pt">
+      <div class="col l6 s12">
+          <label> Fakultas </label>
+          <input name="fakultas" type="text" class="input-field" value={{obj.fakultas}}>
+      </div>
+  </div>
+
+  <div class="col l6 s12">
+      <label> Jurusan </label>
+      <input name="jurusan" type="text" class="input-field" value={{obj.jurusan}}>
+  </div>
+
+  <div class="col l6 s12">
+      <label> Jalur Masuk </label>
+      <input name="jalur_masuk" type="text" class="input-field" value={{obj.jalur_masuk|default_if_none:""}}>
+  </div>
+
+  <div class="col l6 s12">
+      <label> Tahun Masuk </label>
+      <input name="tahun_masuk" type="text" class="input-field" maxlength="4" pattern="[1-2][0-9]{3}" required
+          value={{obj.tahun_masuk|default_if_none:""}}>
+  </div>
+
+  <div class="col l6 s12">
+      <label> Tahun Keluar </label>
+      <input name="tahun_keluar" type="text" class="input-field" maxlength="4" pattern="[1-2][0-9]{3}"
+          value={{obj.tahun_keluar|default_if_none:""}}>
+  </div>
+
+  <div class="col l6 s12">
+      <label> Alasan Keluar </label>
+      <input name="alasan_keluar" type="text" class="input-field" value={{obj.alasan_keluar}}>
+  </div>
+
+  <div class="col l6 s12">
+      <label> MENDAPAT BEASISWA </label>
+      <select id="is_beasiswa" name="is_beasiswa">
+          {% if obj.is_beasiswa %}
+          <option value="0"> TIDAK </option>
+          <option value="1" selected> YES </option>
+          {% else %}
+          <option value="0" selected> TIDAK </option>
+          <option value="1"> YES </option>
+          {% endif %}
+      </select>
+  </div>
+
+  <div class="col l6 s12" id="div_nama_beasiswa" style="display: none;">
+      <label> Nama Beasiswa </label>
+      <input name="nama_beasiswa" type="text" class="input-field" value={{obj.nama_beasiswa|default_if_none:""}}>
+  </div>

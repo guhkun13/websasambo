@@ -1,0 +1,36 @@
+<div class="col l6 s12">
+    <label> Nama Instansi / Perusahaan </label>
+    <input name="nama_instansi" type="text" class="input-field" required value="{{obj.nama_instansi}}">
+</div>
+
+<div class="col l6 s12">
+    <label> Bidang </label>
+    <input name="bidang" type="text" class="input-field" value="{{obj.bidang}}">
+</div>
+
+<div class="col l6 s12">
+    <label> Alamat Instansi / Perusahaan </label>
+    <input name="alamat_instansi" type="text" class="input-field" value="{{obj.alamat_instansi}}">
+</div>
+
+<div class="col l6 s12">
+    <label> Tahun Masuk </label>
+    <input name="tahun_masuk" type="text" class="input-field" maxlength="4" pattern="[1-2][0-9]{3}" required
+        value="{{obj.tahun_masuk}}">
+</div>
+
+<div class="col l6 s12">
+    <label> Tahun Keluar </label>
+    <input name="tahun_keluar" type="text" class="input-field" maxlength="4" pattern="[1-2][0-9]{3}"
+        value="{{obj.tahun_keluar|default_if_none:""}}">
+</div>
+
+<div class="col l6 s12">
+    <label> Alasan Keluar </label>
+    <input name="alasan_keluar" type="text" class="input-field" value="{{obj.alasan_keluar|default_if_none:""}}">
+</div>
+
+<div class="col l6 s12">
+    <label> Jabatan/Posisi </label>
+    <input name="jabatan" type="text" class="input-field" value="{{obj.jabatan|default_if_none:""}}">
+</div>
