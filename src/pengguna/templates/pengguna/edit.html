@@ -74,7 +74,7 @@
               <label> Ijazah Tertinggi </label>
               <select name="ijazah_tertinggi">
                 {% for data in jenjang_pendidikans %}
-                <option {% if instance.jenjang_pendidikan == data %} selected {% endif %} value="{{data.id}}"> {{data}}
+                <option {% if obj.fk_ijazah_tertinggi == data %} selected {% endif %} value="{{data.id}}"> {{data}}
                 </option>
                 {% endfor %}
               </select>

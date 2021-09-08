@@ -7,8 +7,17 @@
 {% endblock %}
 
 {% block breadcrumb %}
-<!-- here you go -->
-{% endblock %}
+<div class="col s12 m6 l6 ">
+  <h5 class="breadcrumbs-title"><span> <code> Add Pengguna </code> {{ request.user.username }}
+    </span></h5>
+</div>
+<div class="col s12 m6 l6 right-align-md">
+  <ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="{% url 'pengguna:index' %}">Home</a></li>
+    <li class="breadcrumb-item">Add</li>
+  </ol>
+</div>
+{% endblock breadcrumb %}
 
 {% block content %}
 
@@ -26,11 +35,13 @@
   <div class="col s12 m12 l12">
     <div class="card card card-default scrollspy">
       <div class="card-content">
-        <h5> Tambah Pengguna [<b> {{request.user.username}}] </b> </h5>
-        <hr />
         <form action="{% url 'pengguna:save' %}" method="POST" class="form">
           {% csrf_token %}
           <div class="row">
+            <div class="col l6 s12">
+              <label> Nomor Induk Anggota </label>
+              <input name="nomor_induk_anggota" type="text" class="input-field" required>
+            </div>
             <div class="col l6 s12">
               <label> Nama Lengkap </label>
               <input name="nama_lengkap" type="text" class="input-field" required>
@@ -61,8 +72,7 @@
               <label> Ijazah Tertinggi </label>
               <select name="ijazah_tertinggi">
                 {% for data in jenjang_pendidikans %}
-                <option {% if instance.jenjang_pendidikan == data %} selected {% endif %}
-                  value="{{data.id}}|{{data.jenis}}"> {{data}}
+                <option {% if instance.jenjang_pendidikan == data %} selected {% endif %} value="{{data.id}}"> {{data}}
                 </option>
                 {% endfor %}
               </select>

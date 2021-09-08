@@ -1,3 +1,5 @@
 static/
 venv/
 *.pyc
+src/db.sqlite3
+*/db.sqlite3
