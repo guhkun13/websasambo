@@ -11,6 +11,16 @@
 
 {% block content %}
 
+<div class="col s12 m12 l12">
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="msg {{ message.tags }}" {% endif %}> {{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
 <div class="row">
   <div class="col md 12">
     <p>

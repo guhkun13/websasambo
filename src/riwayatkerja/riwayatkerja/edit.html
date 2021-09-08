@@ -1,0 +1,181 @@
+{% extends "material-admin/base.html" %}
+{% load custom_tags %}
+{% load static %}
+
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+{% endblock %}
+
+{% block breadcrumb %}
+<div class="col s12 m6 l6 ">
+  <h5 class="breadcrumbs-title"><span> <code> Edit : </code> [<b> {{request.user.username}} /
+        {{obj.fk_jenjang_pendidikan.nama}}]
+    </span></h5>
+</div>
+<div class="col s12 m6 l6 right-align-md">
+  <ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="{% url 'riwayatstudi:index' %}">Home</a></li>
+    <li class="breadcrumb-item">Edit</li>
+  </ol>
+</div>
+{% endblock breadcrumb %}
+
+{% block content %}
+
+<div class="col s12 m12 l12">
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="msg {{ message.tags }}" {% endif %}> {{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+<div class="row">
+  <div class="col s12 m12 l12">
+    <div class="card card card-default scrollspy">
+      <div class="card-content">
+        <form action="{% url 'riwayatstudi:save' %}" method="POST" class="form">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col l6 s12">
+              <label> Nomor Induk </label>
+              <input name="nomor_induk_studi" type="text" class="input-field" required
+                value="{{obj.nomor_induk_studi}}">
+            </div>
+            <div class="col l6 s12">
+              <label> Nama Sekolah/Kampus </label>
+              <input name="nama_instansi" type="text" class="input-field" required value="{{obj.nama_instansi}}">
+            </div>
+
+            <div class="col l6 s12">
+              <label> Negara </label>
+              <select id="negara_kuliah" name="negara">
+                {% if obj.negara == 'INDONESIA' %}
+                <option value="INDONESIA" selected> INDONESIA </option>
+                <option value="LUAR INDONESIA"> LUAR INDONESIA </option>
+                {% else %}
+                <option value="INDONESIA"> INDONESIA </option>
+                <option value="LUAR INDONESIA" selected> LUAR INDONESIA </option>
+                {% endif %}
+              </select>
+            </div>
+
+            <div class="col l6 s12 negara_id">
+              <label> Provinsi </label>
+              <div class="input-field">
+                <select class="select2-data-array browser-default" id="select2-provinsi"></select>
+              </div>
+            </div>
+
+            <div class="col l6 s12 negara_id">
+              <label> Kabupaten </label>
+              <div class="input-field" style="height: 20px;">
+                <select class="select2-data-array browser-default" id="select2-kabupaten"></select>
+              </div>
+            </div>
+
+            <div class="col l6 s12 negara_lain">
+              <label> Nama Negara </label>
+              <input name="nama_negara" type="text" class="input-field" value={{obj.nama_negara}}>
+            </div>
+
+            <div class="col l6 s12 negara_lain">
+              <label> Alamat Kampus </label>
+              <input name="alamat_kampus_luar_negeri" type="text" class="input-field" value={{obj.nama_negara}}>
+            </div>
+            <div class="col l6 s12">
+              <label> Ijazah Tertinggi </label>
+              <select id="jenjang_pendidikan" name="jenjang_pendidikan">
+                {% for data in jenjang_pendidikans %}
+                {% if obj.fk_jenjang_pendidikan == data %}
+                <option value="{{data.id}}|{{data.jenis}}" selected> {{data.nama}}</option>
+                {% else %}
+                <option value="{{data.id}}|{{data.jenis}}"> {{data.nama}}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+
+            <div id="div_pt">
+              <div class="col l6 s12">
+                <label> Fakultas </label>
+                <input name="fakultas" type="text" class="input-field" value={{obj.fakultas}}>
+              </div>
+            </div>
+
+            <div class="col l6 s12">
+              <label> Jurusan </label>
+              <input name="jurusan" type="text" class="input-field" value={{obj.jurusan}}>
+            </div>
+
+            <div class="col l6 s12">
+              <label> Jalur Masuk </label>
+              <input name="jalur_masuk" type="text" class="input-field" value={{obj.jalur_masuk|default_if_none:""}}>
+            </div>
+
+            <div class="col l6 s12">
+              <label> Tahun Masuk </label>
+              <input name="tahun_masuk" type="text" class="input-field" maxlength="4" pattern="[1-2][0-9]{3}"
+                value={{obj.tahun_masuk|default_if_none:""}}>
+            </div>
+
+            <div class="col l6 s12">
+              <label> Tahun Keluar </label>
+              <input name="tahun_keluar" type="text" class="input-field" maxlength="4" pattern="[1-2][0-9]{3}"
+                value={{obj.tahun_keluar|default_if_none:""}}>
+            </div>
+
+            <div class="col l6 s12">
+              <label> Alasan Keluar </label>
+              <input name="alasan_keluar" type="text" class="input-field" value={{obj.alasan_keluar}}>
+            </div>
+
+            <div class="col l6 s12">
+              <label> MENDAPAT BEASISWA </label>
+              <select id="is_beasiswa" name="is_beasiswa">
+                {% if obj.is_beasiswa %}
+                <option value="0"> TIDAK </option>
+                <option value="1" selected> YES </option>
+                {% else %}
+                <option value="0" selected> TIDAK </option>
+                <option value="1"> YES </option>
+                {% endif %}
+              </select>
+            </div>
+
+            <div class="col l6 s12" id="div_nama_beasiswa" style="display: none;">
+              <label> Nama Beasiswa </label>
+              <input name="nama_beasiswa" type="text" class="input-field"
+                value={{obj.nama_beasiswa|default_if_none:""}}>
+            </div>
+
+            <input type="hidden" name="pk" value="{{obj.pk}}">
+            <input type="hidden" name="provinsi" id="hiddenProvinsi" value={{obj.id_provinsi}}>
+            <input type="hidden" name="kabupaten" id="hiddenKabupaten" value={{obj.id_kabupaten}}>
+
+            <div class="input-field col s12">
+              <button class="btn waves-effect waves-light submit" type="submit" name="action">
+                Submit <i class="material-icons right">send</i>
+              </button>
+
+              <a href="{% url 'riwayatstudi:index' %}" class="btn red " type="button" name="action">
+                Cancel <i class="material-icons right">cancel</i>
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+
+{% include 'riwayatstudi/lib/select2.html' %}
+{% include 'riwayatstudi/lib/select-custom.html' %}
+
+{% endblock js%}

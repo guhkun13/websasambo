@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import RiwayatStudi, JenjangPendidikan
+from riwayatstudi.models import RiwayatStudi
 
 # Register your models here.
-admin.site.register(JenjangPendidikan)
 admin.site.register(RiwayatStudi)

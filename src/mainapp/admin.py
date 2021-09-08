@@ -11,4 +11,5 @@ admin.site.register(TipeJawabanDanPertanyaan)
 admin.site.register(ModulInduk)
 admin.site.register(ModulOpsiJawaban)
 admin.site.register(ModulPertanyaan)
+admin.site.register(JenjangPendidikan)
 

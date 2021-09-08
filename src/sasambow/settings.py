@@ -145,9 +145,9 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 from django.contrib.messages import constants as messages
 
 MESSAGE_TAGS = {
-    messages.DEBUG: 'alert-info',
-    messages.INFO: 'alert-info',
-    messages.SUCCESS: 'alert-success',
-    messages.WARNING: 'alert-warning',
-    messages.ERROR: 'alert-danger',
+    messages.DEBUG: 'gradient-45deg-purple-deep-orange',
+    messages.INFO: 'gradient-45deg-light-blue-cyan',
+    messages.SUCCESS: 'gradient-45deg-green-teal',
+    messages.WARNING: 'gradient-45deg-amber-amber',
+    messages.ERROR: 'gradient-45deg-red-pink',
 }

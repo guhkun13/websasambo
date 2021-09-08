@@ -198,14 +198,17 @@
 
         <!-- content -->
         <div class="col s12">
-          <div class="container">
-            {% block content %}
-            <!-- Your Content Here -->
-            {% endblock content %}
-          </div>
-          <div class="content-overlay"></div>
+          <!-- messages -->
+          {% include 'partials/messages.html' %}
+
+          {% block content %}
+          <!-- Your Content Here -->
+
+          {% endblock content %}
         </div>
+        <div class="content-overlay"></div>
       </div>
+    </div>
     </div>
     <!-- END: Page Main-->
 
@@ -253,6 +256,8 @@
       src="{% static 'materialize-html-admin-template/app-assets/vendors/jquery-validation/jquery.validate.min.js' %}"></script>
     <script src="{% static 'materialize-html-admin-template/app-assets/js/scripts/form-validation.js' %}"></script>
 
+    <script src="{% static 'materialize-html-admin-template/app-assets/js/scripts/ui-alerts.min.js' %}"></script>
+
     <!-- END PAGE LEVEL JS-->
 
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
@@ -261,6 +266,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+
 
     <script type="text/javascript">
       $(document).ready(function () {

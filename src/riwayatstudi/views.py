@@ -56,8 +56,6 @@ def edit(request, id):
     context['jenjang_pendidikans'] = JenjangPendidikan.objects.all()
 
     html = app_name +  '/edit.html'
-
-    
     return render (request, html, context)  
 
 
@@ -76,6 +74,11 @@ def save(request):
             try:
                 data = RiwayatStudi.objects.get(pk=_POST.get('pk'))
                 impl_save(request, data, _POST)                
+            
+                msg = 'berhasil update data riwayat studi ' + data.nama_instansi + "[" + data.nomor_induk_studi + ']'
+                messages.add_message(request, _SUCCESS, msg)
+                return HttpResponseRedirect(reverse('riwayatstudi:index'))
+
             except Exception as e:
                 print ("EX on @" + app_name + "#" + func_name)
                 print (e)
@@ -88,6 +91,10 @@ def save(request):
             try:
                 data = RiwayatStudi()
                 impl_save(request, data, _POST)
+
+                msg = 'berhasil tambah ' + app_name
+                messages.add_message(request, _SUCCESS, msg)
+                return HttpResponseRedirect(reverse('riwayatstudi:index'))
             except Exception as e:
                 print ("EX on @" + app_name + "#" + func_name)
                 print (e)
@@ -96,9 +103,7 @@ def save(request):
                 messages.add_message(request, _ERROR, msg)
                 return HttpResponseRedirect(reverse('riwayatstudi:add'))
 
-            msg = 'berhasil tambah ' + app_name
-            messages.add_message(request, _SUCCESS, msg)
-            return HttpResponseRedirect(reverse('riwayatstudi:index'))
+            
     
         
     return HttpResponseRedirect(reverse('riwayatstudi:index')) 

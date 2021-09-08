@@ -21,8 +21,6 @@ class Log(models.Model):
         return self.id
 
 
-
-
 ## MASTER DATA MODUL KUISIONER ##
 class TipeJawabanDanPertanyaan(models.Model):
     id = models.AutoField(primary_key=True)    
